@@ -10,6 +10,8 @@ import {
 } from "~/components/ui/card";
 import { cn } from "~/lib/utils";
 import { Source_Sans_3  as FontSans } from "next/font/google";
+import { SiteHeader } from "./_components/site-header";
+import { Toaster} from 'react-hot-toast';
 //import { EB_Garamond as FontSans } from "next/font/google";
 
 //EB Garamond
@@ -34,7 +36,9 @@ export default function RootLayout({
     <html lang="en" className={cn("min-h-screen antialiased",fontSans.variable)}>
       <body className="bg-background">
           <TRPCReactProvider>
+            <SiteHeader />
             <div className="relative flex min-h-screen flex-col">{children}</div>
+            <Toaster />
           </TRPCReactProvider>
       </body>
     </html>
