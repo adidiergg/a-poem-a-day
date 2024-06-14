@@ -1,6 +1,10 @@
 import Link from "next/link";
+import { getServerAuthSession } from "~/server/auth";
+
 
 export function SiteHeader() {
+
+    
     return (
         <header className="fixed  bottom-0 lg:top-0 lg:h-24 z-10 w-full">
             <div className="container flex h-24  items-center ">

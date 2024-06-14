@@ -17,6 +17,7 @@ import { Button } from "~/components/ui/button";
 import { api } from "~/trpc/react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { Spinner } from "~/components/spinner";
 
 type Inputs = z.infer<typeof signUpSchema>;
 
@@ -50,6 +51,7 @@ export function SignUpForm() {
   }
 
   return (
+    
     <Form {...form}>
       <form className="grid gap-3" onSubmit={form.handleSubmit(obSubmit)}>
         <FormField
@@ -91,9 +93,19 @@ export function SignUpForm() {
             </FormItem>
           )}
         />
+         <Button className="mt-4 mb-4" disabled={isCreating}>
+         {isCreating ? 
+          <div className="text-center">
+          <Spinner size={24} />
+          </div>
+        :
+          <span>Crear cuenta</span>
+        }
+         </Button>
         
-        <Button className="mt-4 mb-4">Crear cuenta</Button>
+        
       </form>
     </Form>
+    
   );
 }

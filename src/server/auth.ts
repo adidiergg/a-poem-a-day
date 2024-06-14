@@ -5,9 +5,10 @@ import {
   type NextAuthOptions,
 } from "next-auth";
 import { type Adapter } from "next-auth/adapters";
-import DiscordProvider from "next-auth/providers/discord";
-
+import Credentials from "next-auth/providers/credentials";
+import CredentialsProvider from "next-auth/providers/credentials";
 import { env } from "~/env";
+import { hashPassword } from "~/lib/utils";
 import { db } from "~/server/db";
 
 /**
@@ -37,6 +38,8 @@ declare module "next-auth" {
  * @see https://next-auth.js.org/configuration/options
  */
 export const authOptions: NextAuthOptions = {
+  session: { strategy:"jwt",maxAge:24*60*60},
+
   callbacks: {
     session: ({ session, user }) => ({
       ...session,
@@ -44,11 +47,42 @@ export const authOptions: NextAuthOptions = {
         ...session.user,
         id: user.id,
       },
-    }),
+    }
+  ),
   },
-  adapter: PrismaAdapter(db) as Adapter,
   providers: [
-    
+    CredentialsProvider({
+      type: "credentials",
+      credentials: {
+      },
+      async authorize(credentials,req) {
+        console.log(credentials);
+        try{
+          const user = await db.user.findUnique({
+            where:{
+              email: credentials.email,
+            },
+            select:{
+              id:true,
+              name:true,
+              email:true,
+              password:true,
+
+            }
+          });
+          if(user && user.password === hashPassword(credentials.password)){
+            console.log(user);
+            return user;
+          }else{
+            return null;
+          }
+          console.log(user);
+        } catch (e){
+          return null;
+        }
+        return null;
+      },
+    }), // Add the Credentials provider
     /**
      * ...add more providers here.
      *
@@ -59,6 +93,10 @@ export const authOptions: NextAuthOptions = {
      * @see https://next-auth.js.org/providers/github
      */
   ],
+  pages:{
+    signIn:"/signin",
+  },
+  debug:true,
 };
 
 /**

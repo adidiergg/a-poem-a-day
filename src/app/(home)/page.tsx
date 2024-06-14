@@ -20,6 +20,7 @@ const fontGreatVibes = FontGreatVibes({ weight: ["400"], subsets: ["latin"] });
 const fontGaramond = FontGaramond({ weight: ["400"], subsets: ["latin"] });
 export default async function Home() {
   const session = await getServerAuthSession();
+  console.log(session);
 
   return (
     <div className="container relative h-[calc(100vh)]  px-0   lg:grid lg:grid-cols-2">

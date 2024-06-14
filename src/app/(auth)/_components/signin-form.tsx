@@ -1,45 +1,32 @@
 "use client";
 
-import { signUpSchema } from "~/lib/validations/auth";
+import { authSchema } from "~/lib/validations/auth";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Form,FormField, FormMessage,FormItem, FormLabel, FormControl } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
-type Inputs = z.infer<typeof signUpSchema>
+import { signIn } from "next-auth/react"
+type Inputs = z.infer<typeof authSchema>
 
 export function SignInForm(){
 
     const form = useForm<Inputs>({
-        resolver: zodResolver(signUpSchema),
+        resolver: zodResolver(authSchema),
         defaultValues:{
-            name:  "",
             email: "",
             password: "",
         }
     })
 
     async function obSubmit(data: Inputs){
-        console.log(data);
+        signIn("credentials",{email:data.email,password:data.password})
     }
 
     return(
         <Form {...form}>
             <form className="grid gap-3" onSubmit={form.handleSubmit(obSubmit)}>
-                <FormField 
-                    control={form.control}
-                    name="name"
-                    render={({field}) =>(
-                        <FormItem>
-                            <FormLabel>Nombre</FormLabel>
-                            <FormControl>
-                                <Input {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
                 <FormField
                     control={form.control}
                     name="email"
@@ -67,7 +54,7 @@ export function SignInForm(){
                     )}
 
                 />
-                <Button>Crear cuenta</Button>
+                <Button>Iniciar sesión</Button>
             </form>
         </Form>
     );
