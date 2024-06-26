@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import { Great_Vibes as FontGreatVibes, Great_Vibes } from "next/font/google";
@@ -12,19 +13,17 @@ import {
   CardContent,
 } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
-import { getServerAuthSession } from "~/server/auth";
+//import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/trpc/server";
 import { cn } from "~/lib/utils";
+import { useSession } from "next-auth/react";
 
 const fontGreatVibes = FontGreatVibes({ weight: ["400"], subsets: ["latin"] });
 const fontGaramond = FontGaramond({ weight: ["400"], subsets: ["latin"] });
-export default async function Home() {
-  const session = await getServerAuthSession();
-  console.log(session);
-
+export default function Home() {
   return (
     <div className="container relative h-[calc(100vh)]  px-0   lg:grid lg:grid-cols-2">
-      <div className="relative h-64 flex-col p-10  text-background lg:flex lg:h-full lg:justify-center ">
+      <div className="relative flex-col p-10  text-background lg:flex lg:h-full lg:justify-center ">
         <Image
           src="/images/home.jpg"
           alt=""
@@ -73,58 +72,131 @@ export default async function Home() {
             </div>
           </div>
         </div>
-        
-
-        <div className="visible lg:invisible relative z-10 flex justify-center items-center flex-row gap-3 mt-4 text-primary">
-          
-          <Button className="basis-1/2" asChild>
-          <Link href="/signin">
-          Iniciar sesión
-          </Link>
-          </Button>
-           
-          
-          <Button variant="outline" className="basis-1/2" asChild>
-          <Link href="/signup">
-          Crear cuenta
-          </Link>
-          </Button>
-        </div>
       </div>
 
-      <div
-        className=" relative mx-auto flex h-full w-full flex-col items-center 
-      bg-background before:pointer-events-none before:absolute before:inset-0 before:block before:h-full before:w-full before:bg-[url('/images/background-pattern.svg')] 
-      before:bg-repeat before:opacity-5 lg:justify-center"
-      >
-        <div className="invisible z-0 flex h-3/5 w-full rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px] lg:visible  lg:w-3/5 xl:w-3/5 ">
-          <div className="flex flex-1 flex-col justify-between p-8 md:px-12">
-            <div className="flex flex-col gap-4">
-              <h1 className="text-center text-xl font-semibold text-primary/90">
-              Cada día, descubre un nuevo poema.
-              </h1>
-              <p className="text-sm text-center font-light text-primary/90">
-              Cada día, descubre un nuevo poema. Regístrate para recibir contenido exclusivo.
-              </p>
+      <div className="overflow-y-scroll  bg-background ">
+        <div
+          className="relative  flex min-h-screen	 w-full flex-col items-center gap-6 overflow-y-visible p-8 py-16 before:pointer-events-none before:absolute before:inset-0 before:block before:h-full before:w-full before:bg-[url('/images/background-pattern.svg')] 
+      before:bg-repeat before:opacity-5 
+     "
+        >
+          <h1 className="text-center text-3xl font-light text-primary/95  lg:text-3xl">
+            Poemas recientes...
+          </h1>
 
-              <Button asChild>
-                <Link href="/signup">Crear cuenta</Link>
-              </Button>
+          <div className="z-0 flex  w-full flex-col rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  lg:w-4/5 xl:w-4/5 p-8 md:px-12">
+            <div className="flex flex-row gap-3 justify-between">
+              <div className="basis-5/6 overflow-hidden">
+              <h1 className="truncate   text-lg  font-semibold text-primary/90  lg:text-xl">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere incidunt accusamus aliquam sit tenetur? Et minus ipsum qui non nobis delectus distinctio. Sapiente, unde necessitatibus nobis voluptatem reiciendis vitae? Architecto!{" "}
+              </h1>
+              </div>
+              <div className="basis-1/6 ">
+              <h1 className="text-right  font-md lg:font-lg italic text-primary/90">
+                24/10/2024
+              </h1>
+              </div>
             </div>
-            <div className="flex">
-              <span className="w-full border-t" /> 
-            </div>
-            <div className="flex flex-col gap-1">
-              <p className="font-semibold text-primary/90">
-                ¿Ya tienes una cuenta?
+
+            <div className="flex flex-col">
+              <p className="font-md lg:font-lg italic text-primary/90">
+                Jorge Luis Borges
               </p>
-              <Button variant="outline" asChild><Link href="/signin">Iniciar sesion</Link></Button>
+              
             </div>
           </div>
+
+          <div className="z-0 flex  w-full flex-col rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  lg:w-4/5 xl:w-4/5 p-8 md:px-12">
+            <div className="flex flex-row gap-3 justify-between">
+              <div className="basis-5/6 overflow-hidden">
+              <h1 className="truncate   text-lg  font-semibold text-primary/90  lg:text-xl">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere incidunt accusamus aliquam sit tenetur? Et minus ipsum qui non nobis delectus distinctio. Sapiente, unde necessitatibus nobis voluptatem reiciendis vitae? Architecto!{" "}
+              </h1>
+              </div>
+              <div className="basis-1/6 ">
+              <h1 className="text-right  font-md lg:font-lg italic text-primary/90">
+                24/10/2024
+              </h1>
+              </div>
+            </div>
+
+            <div className="flex flex-col">
+              <p className="font-md lg:font-lg italic text-primary/90">
+                Jorge Luis Borges
+              </p>
+              
+            </div>
+          </div>
+
+
+          <div className="z-0 flex  w-full flex-col rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  lg:w-4/5 xl:w-4/5 p-8 md:px-12">
+            <div className="flex flex-row gap-3 justify-between">
+              <div className="basis-5/6 overflow-hidden">
+              <h1 className="truncate   text-lg  font-semibold text-primary/90  lg:text-xl">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere incidunt accusamus aliquam sit tenetur? Et minus ipsum qui non nobis delectus distinctio. Sapiente, unde necessitatibus nobis voluptatem reiciendis vitae? Architecto!{" "}
+              </h1>
+              </div>
+              <div className="basis-1/6 ">
+              <h1 className="text-right  font-md lg:font-lg italic text-primary/90">
+                24/10/2024
+              </h1>
+              </div>
+            </div>
+
+            <div className="flex flex-col">
+              <p className="font-md lg:font-lg italic text-primary/90">
+                Jorge Luis Borges
+              </p>
+              
+            </div>
+          </div>
+
+          <div className="z-0 flex  w-full flex-col rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  lg:w-4/5 xl:w-4/5 p-8 md:px-12">
+            <div className="flex flex-row gap-3 justify-between">
+              <div className="basis-5/6 overflow-hidden">
+              <h1 className="truncate   text-lg  font-semibold text-primary/90  lg:text-xl">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere incidunt accusamus aliquam sit tenetur? Et minus ipsum qui non nobis delectus distinctio. Sapiente, unde necessitatibus nobis voluptatem reiciendis vitae? Architecto!{" "}
+              </h1>
+              </div>
+              <div className="basis-1/6 ">
+              <h1 className="text-right  font-md lg:font-lg italic text-primary/90">
+                24/10/2024
+              </h1>
+              </div>
+            </div>
+
+            <div className="flex flex-col">
+              <p className="font-md lg:font-lg italic text-primary/90">
+                Jorge Luis Borges
+              </p>
+              
+            </div>
+          </div>
+
+          <div className="z-0 flex  w-full flex-col rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  lg:w-4/5 xl:w-4/5 p-8 md:px-12">
+            <div className="flex flex-row gap-3 justify-between">
+              <div className="basis-5/6 overflow-hidden">
+              <h1 className="truncate   text-lg  font-semibold text-primary/90  lg:text-xl">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere incidunt accusamus aliquam sit tenetur? Et minus ipsum qui non nobis delectus distinctio. Sapiente, unde necessitatibus nobis voluptatem reiciendis vitae? Architecto!{" "}
+              </h1>
+              </div>
+              <div className="basis-1/6 ">
+              <h1 className="text-right  font-md lg:font-lg italic text-primary/90">
+                24/10/2024
+              </h1>
+              </div>
+            </div>
+
+            <div className="flex flex-col">
+              <p className="font-md lg:font-lg italic text-primary/90">
+                Jorge Luis Borges
+              </p>
+              
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
   );
 }
-
-
