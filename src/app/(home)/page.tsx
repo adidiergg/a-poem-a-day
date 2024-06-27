@@ -1,26 +1,15 @@
-"use client";
-import Link from "next/link";
 import Image from "next/image";
 import { Great_Vibes as FontGreatVibes, Great_Vibes } from "next/font/google";
 import { EB_Garamond as FontGaramond } from "next/font/google";
-import { CreatePost } from "~/app/_components/create-post";
-import { Button } from "~/components/ui/button";
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-  CardContent,
-} from "~/components/ui/card";
-import { Input } from "~/components/ui/input";
-//import { getServerAuthSession } from "~/server/auth";
-import { api } from "~/trpc/server";
+import { api } from "~/trpc/react";
 import { cn } from "~/lib/utils";
-import { useSession } from "next-auth/react";
+import { Poems } from "../_components/poems";
 
 const fontGreatVibes = FontGreatVibes({ weight: ["400"], subsets: ["latin"] });
 const fontGaramond = FontGaramond({ weight: ["400"], subsets: ["latin"] });
+
 export default function Home() {
+ 
   return (
     <div className="container relative h-[calc(100vh)]  px-0   lg:grid lg:grid-cols-2">
       <div className="relative flex-col p-10  text-background lg:flex lg:h-full lg:justify-center ">
@@ -84,116 +73,7 @@ export default function Home() {
             Poemas recientes...
           </h1>
 
-          <div className="z-0 flex  w-full flex-col rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  lg:w-4/5 xl:w-4/5 p-8 md:px-12">
-            <div className="flex flex-row gap-3 justify-between">
-              <div className="basis-5/6 overflow-hidden">
-              <h1 className="truncate   text-lg  font-semibold text-primary/90  lg:text-xl">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere incidunt accusamus aliquam sit tenetur? Et minus ipsum qui non nobis delectus distinctio. Sapiente, unde necessitatibus nobis voluptatem reiciendis vitae? Architecto!{" "}
-              </h1>
-              </div>
-              <div className="basis-1/6 ">
-              <h1 className="text-right  font-md lg:font-lg italic text-primary/90">
-                24/10/2024
-              </h1>
-              </div>
-            </div>
-
-            <div className="flex flex-col">
-              <p className="font-md lg:font-lg italic text-primary/90">
-                Jorge Luis Borges
-              </p>
-              
-            </div>
-          </div>
-
-          <div className="z-0 flex  w-full flex-col rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  lg:w-4/5 xl:w-4/5 p-8 md:px-12">
-            <div className="flex flex-row gap-3 justify-between">
-              <div className="basis-5/6 overflow-hidden">
-              <h1 className="truncate   text-lg  font-semibold text-primary/90  lg:text-xl">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere incidunt accusamus aliquam sit tenetur? Et minus ipsum qui non nobis delectus distinctio. Sapiente, unde necessitatibus nobis voluptatem reiciendis vitae? Architecto!{" "}
-              </h1>
-              </div>
-              <div className="basis-1/6 ">
-              <h1 className="text-right  font-md lg:font-lg italic text-primary/90">
-                24/10/2024
-              </h1>
-              </div>
-            </div>
-
-            <div className="flex flex-col">
-              <p className="font-md lg:font-lg italic text-primary/90">
-                Jorge Luis Borges
-              </p>
-              
-            </div>
-          </div>
-
-
-          <div className="z-0 flex  w-full flex-col rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  lg:w-4/5 xl:w-4/5 p-8 md:px-12">
-            <div className="flex flex-row gap-3 justify-between">
-              <div className="basis-5/6 overflow-hidden">
-              <h1 className="truncate   text-lg  font-semibold text-primary/90  lg:text-xl">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere incidunt accusamus aliquam sit tenetur? Et minus ipsum qui non nobis delectus distinctio. Sapiente, unde necessitatibus nobis voluptatem reiciendis vitae? Architecto!{" "}
-              </h1>
-              </div>
-              <div className="basis-1/6 ">
-              <h1 className="text-right  font-md lg:font-lg italic text-primary/90">
-                24/10/2024
-              </h1>
-              </div>
-            </div>
-
-            <div className="flex flex-col">
-              <p className="font-md lg:font-lg italic text-primary/90">
-                Jorge Luis Borges
-              </p>
-              
-            </div>
-          </div>
-
-          <div className="z-0 flex  w-full flex-col rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  lg:w-4/5 xl:w-4/5 p-8 md:px-12">
-            <div className="flex flex-row gap-3 justify-between">
-              <div className="basis-5/6 overflow-hidden">
-              <h1 className="truncate   text-lg  font-semibold text-primary/90  lg:text-xl">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere incidunt accusamus aliquam sit tenetur? Et minus ipsum qui non nobis delectus distinctio. Sapiente, unde necessitatibus nobis voluptatem reiciendis vitae? Architecto!{" "}
-              </h1>
-              </div>
-              <div className="basis-1/6 ">
-              <h1 className="text-right  font-md lg:font-lg italic text-primary/90">
-                24/10/2024
-              </h1>
-              </div>
-            </div>
-
-            <div className="flex flex-col">
-              <p className="font-md lg:font-lg italic text-primary/90">
-                Jorge Luis Borges
-              </p>
-              
-            </div>
-          </div>
-
-          <div className="z-0 flex  w-full flex-col rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  lg:w-4/5 xl:w-4/5 p-8 md:px-12">
-            <div className="flex flex-row gap-3 justify-between">
-              <div className="basis-5/6 overflow-hidden">
-              <h1 className="truncate   text-lg  font-semibold text-primary/90  lg:text-xl">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere incidunt accusamus aliquam sit tenetur? Et minus ipsum qui non nobis delectus distinctio. Sapiente, unde necessitatibus nobis voluptatem reiciendis vitae? Architecto!{" "}
-              </h1>
-              </div>
-              <div className="basis-1/6 ">
-              <h1 className="text-right  font-md lg:font-lg italic text-primary/90">
-                24/10/2024
-              </h1>
-              </div>
-            </div>
-
-            <div className="flex flex-col">
-              <p className="font-md lg:font-lg italic text-primary/90">
-                Jorge Luis Borges
-              </p>
-              
-            </div>
-          </div>
+          <Poems/>
 
         </div>
       </div>
