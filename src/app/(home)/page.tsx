@@ -4,9 +4,9 @@ import { EB_Garamond as FontGaramond } from "next/font/google";
 import { api } from "~/trpc/react";
 import { cn } from "~/lib/utils";
 import { Poems } from "../_components/poems";
+import { Daily } from "../_components/daily";
 
 const fontGreatVibes = FontGreatVibes({ weight: ["400"], subsets: ["latin"] });
-const fontGaramond = FontGaramond({ weight: ["400"], subsets: ["latin"] });
 
 export default function Home() {
  
@@ -30,37 +30,11 @@ export default function Home() {
             Un poema al día, alegra el alma y la vida
           </p>
 
-          <div className="z-0 flex w-full rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  lg:w-4/5 xl:w-4/5 ">
-            <div className="flex flex-col p-8 md:px-12">
-              <div className="border-l-4 border-primary/90 px-4">
-                <p
-                  className={cn(
-                    "mb-4 mt-1  text-lg text-primary/80 lg:text-lg",
-                    fontGaramond.className,
-                  )}
-                >
-                  Hay tanta soledad en este oro.
-                  <br />
-                  La luna de las noches no es la luna
-                  <br />
-                  que vio el primer Adán. Los largos siglos
-                  <br />
-                  de la vigilia humana la han colmado
-                  <br />
-                  de antiguo llanto. Mírala. Es tu espejo.
-                  <br />
-                </p>
-              </div>
-              <h1 className="mt-1 text-2xl font-bold text-primary/90  lg:text-2xl">
-                {" "}
-                La luna{" "}
-              </h1>
-              <span className="font-md lg:font-lg italic text-primary/90">
-                Jorge Luis Borges
-              </span>
-            </div>
-          </div>
+          <Daily/>
         </div>
+
+        
+
       </div>
 
       <div className="overflow-y-scroll  bg-background ">

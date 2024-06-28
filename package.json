@@ -39,6 +39,7 @@
     "react-dom": "^18.3.0",
     "react-hook-form": "^7.51.5",
     "react-hot-toast": "^2.4.1",
+    "react-markdown": "^9.0.1",
     "server-only": "^0.0.1",
     "superjson": "^2.2.1",
     "tailwind-merge": "^2.3.0",

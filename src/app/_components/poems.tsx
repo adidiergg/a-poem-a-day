@@ -7,6 +7,7 @@ import { SkeletonPostsHome } from "~/components/skeleton_post_home";
 
 export const Poems = () => {
   const { data: poems, isLoading, isError } = api.poem.all.useQuery();
+  
   if (isLoading) return <SkeletonPostsHome />;
   if (isError) return <h1>Error de conexión</h1>;
   return (

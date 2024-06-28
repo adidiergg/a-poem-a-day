@@ -9,17 +9,30 @@ export const poemRouter = createTRPCRouter({
   all: publicProcedure
     .query(async  ({ ctx }) => {
       
-      const all  = await ctx.db.poem.findMany({
+      const response  = await ctx.db.poem.findMany({
         select:{
           id: true,
           title: true,
           author: true,
           content: true,
           createdAt: true,
-        }
+        },
+        orderBy:{
+          createdAt: "desc",
+        },
       });
-      console.log("all",all)
-      return all;
+      return response;
+    }),
+  getLatest: publicProcedure
+    .query(async ({ ctx }) => {
+      const response = await ctx.db.poem.findMany({
+        orderBy:{createdAt: "desc"},
+        take:1,
+      });
+      if(response.length){
+        return response[0];
+      }
+      return undefined;
     }),
 
   // create: protectedProcedure
