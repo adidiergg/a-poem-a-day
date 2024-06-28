@@ -34,6 +34,14 @@ export const poemRouter = createTRPCRouter({
       }
       return undefined;
     }),
+  getById: publicProcedure
+    .input(z.object({id:z.string()}))
+    .query(async ({ctx , input}) => {
+      const response = await ctx.db.poem.findUnique({
+        where:{id:Number(input.id)}
+      });
+      return response;
+    }),
 
   // create: protectedProcedure
   //   .input(z.object({ name: z.string().min(1) }))

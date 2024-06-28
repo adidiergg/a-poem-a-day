@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Poem } from "~/lib/types";
 
 type PoemProps = {
@@ -16,10 +17,12 @@ export const Post = ({ poem }: PoemProps) => {
           day: "numeric",
         })}
       </h1>
-
-      <h1 className="truncate   text-lg  font-semibold text-primary/90  lg:text-xl">
-        {title}
-      </h1>
+      
+      <Link href={`/poems/${encodeURIComponent(id)}`} >
+        <h1 className="truncate   text-lg  font-semibold text-primary/90  lg:text-xl">
+          {title}
+        </h1>
+      </Link>
 
       <div className="flex flex-col">
         <p className="font-md lg:font-lg italic text-primary/90">{author}</p>

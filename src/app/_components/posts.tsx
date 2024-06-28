@@ -5,7 +5,7 @@ import { Spinner } from "~/components/spinner";
 import { SkeletonPostsHome } from "~/components/skeleton_post_home";
 
 
-export const Poems = () => {
+export const Posts = () => {
   const { data: poems, isLoading, isError } = api.poem.all.useQuery();
   
   if (isLoading) return <SkeletonPostsHome />;

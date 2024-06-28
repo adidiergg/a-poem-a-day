@@ -3,7 +3,7 @@ import { Great_Vibes as FontGreatVibes, Great_Vibes } from "next/font/google";
 import { EB_Garamond as FontGaramond } from "next/font/google";
 import { api } from "~/trpc/react";
 import { cn } from "~/lib/utils";
-import { Poems } from "../_components/poems";
+import { Posts } from "../_components/posts";
 import { Daily } from "../_components/daily";
 
 const fontGreatVibes = FontGreatVibes({ weight: ["400"], subsets: ["latin"] });
@@ -47,7 +47,7 @@ export default function Home() {
             Poemas recientes...
           </h1>
 
-          <Poems/>
+          <Posts/>
 
         </div>
       </div>

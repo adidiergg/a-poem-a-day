@@ -11,9 +11,6 @@ const fontGaramond = FontGaramond({ weight: ["400"], subsets: ["latin"] });
 export const Daily = ()=>{
     const { data,isLoading,isError} = api.poem.getLatest.useQuery();
     const { title,content,author } = data ?? {};
-    //const poem = data ? data : null;
-    //string.split(' ').slice(0, 5).join(' ')
-    console.log(data)
     if(isLoading) return <Spinner/>
     
     return (
@@ -25,7 +22,7 @@ export const Daily = ()=>{
           <Markdown  className={cn(
                 "mb-4 mt-1  text-lg text-primary/80 lg:text-lg",
                 fontGaramond.className,
-              )}>{content?.split("\n").slice(0,4).join("\n")}</Markdown>
+              )}>{content?.split("\n").slice(0,8).join("\n")}</Markdown>
           </div>
           <h1 className="mt-1 text-2xl font-bold text-primary/90  lg:text-2xl">
             { title}
