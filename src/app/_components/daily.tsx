@@ -4,13 +4,13 @@ import { EB_Garamond as FontGaramond } from "next/font/google";
 import { cn} from "~/lib/utils";
 import Markdown from "react-markdown";
 import { Spinner } from "~/components/spinner";
-
+import Link from "next/link";
 const fontGaramond = FontGaramond({ weight: ["400"], subsets: ["latin"] });
 
 
 export const Daily = ()=>{
     const { data,isLoading,isError} = api.poem.getLatest.useQuery();
-    const { title,content,author } = data ?? {};
+    const { id,title,content,author } = data ?? {};
     if(isLoading) return <Spinner/>
     
     return (
@@ -24,10 +24,12 @@ export const Daily = ()=>{
                 fontGaramond.className,
               )}>{content?.split("\n").slice(0,8).join("\n")}</Markdown>
           </div>
-          <h1 className="mt-1 text-2xl font-bold text-primary/90  lg:text-2xl">
+          <Link href={`/poems/${encodeURIComponent(String(id))}`} >
+          <h1 className="mt-1 text-2xl font-bold text-primary/90 hover:text-primary lg:text-2xl">
             { title}
           </h1>
-          <span className="font-md lg:font-lg italic text-primary/90">
+          </Link>
+          <span className="text-md  italic text-primary/90">
             { author }
           </span>
         </div>
