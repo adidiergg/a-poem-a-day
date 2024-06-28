@@ -10,7 +10,7 @@ const fontGaramond = FontGaramond({ weight: ["400"], subsets: ["latin"] });
 
 export const Daily = ()=>{
     const { data,isLoading,isError} = api.poem.getLatest.useQuery();
-    const { title,content,author } = data || {};
+    const { title,content,author } = data ?? {};
     //const poem = data ? data : null;
     //string.split(' ').slice(0, 5).join(' ')
     console.log(data)
