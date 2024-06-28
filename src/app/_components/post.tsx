@@ -10,7 +10,7 @@ export const Post = ({ poem }: PoemProps) => {
 
   return (
     <div className="z-0 flex  w-full flex-col rounded-lg bg-background p-4 py-8 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px] md:px-12 lg:w-4/5 xl:w-4/5">
-      <h1 className="font-md  lg:font-lg text-right italic text-primary/90">
+      <h1 className="text-md  lg:text-lg text-right italic text-primary/90">
         {createdAt.toLocaleDateString("es-ES", {
           year: "numeric",
           month: "long",
@@ -25,7 +25,7 @@ export const Post = ({ poem }: PoemProps) => {
       </Link>
 
       <div className="flex flex-col">
-        <p className="font-md lg:font-lg italic text-primary/90">{author}</p>
+        <p className="text-md lg:text-lg italic text-primary/90">{author}</p>
       </div>
     </div>
   );
