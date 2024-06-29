@@ -10,21 +10,21 @@ type PoemProps = {
 const fontGaramond = FontGaramond({ weight: ["400"], subsets: ["latin"] });
 
 export const PostPoem = ({ poem }: PoemProps) => {
-  const { title, author, content,createdAt } = poem;
+  const { title, author, content, createdAt } = poem;
 
   return (
     <>
-      <div className="z-0 flex  w-full rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  lg:w-4/5 xl:w-4/5 ">
-        <div className="flex basis-full justify-between flex-col gap-4 p-8 md:px-12">
-        <h1 className="text-md  lg:text-lg text-right italic text-primary/90">
-        {createdAt.toLocaleDateString("es-ES", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })}
-      </h1>
+      <div className="z-0 flex h-fit w-full rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  lg:w-4/5 xl:w-4/5 ">
+        <div className="flex basis-full flex-col justify-between gap-4 p-8 md:px-12">
+          <h1 className="text-md  text-right italic text-primary/90 lg:text-lg">
+            {createdAt.toLocaleDateString("es-ES", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </h1>
 
-        <h1 className="mt-1 text-2xl font-bold text-primary/90 text-center lg:text-2xl">
+          <h1 className="mt-1 text-center text-2xl font-bold text-primary/90 lg:text-2xl">
             {title}
           </h1>
           <div className="border-l-4 border-primary/90 px-4">
@@ -37,8 +37,8 @@ export const PostPoem = ({ poem }: PoemProps) => {
               {content}
             </Markdown>
           </div>
-         
-          <span className="text-md lg:text-xl italic text-primary/90">
+
+          <span className="text-md italic text-primary/90 lg:text-xl">
             {author}
           </span>
         </div>
