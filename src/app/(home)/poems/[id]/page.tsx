@@ -13,7 +13,7 @@ import { api } from "~/trpc/react";
 export default  function PoemPage({params}: PoemPageProps){
     const id = decodeURIComponent(params.id);
     const { data,isLoading,isError} = api.poem.getById.useQuery({id});
-    if(isLoading) return <Spinner size={100}/>
+    if(isLoading) return <Spinner size={40}/>
     if(isError) return <div>error</div>
     if(data===null) return <div>not found</div>
     return (

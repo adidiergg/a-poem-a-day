@@ -11,7 +11,7 @@ const fontGreatVibes = FontGreatVibes({ weight: ["400"], subsets: ["latin"] });
 export default function Home() {
  
   return (
-    <div className="container relative h-[calc(100vh)]  px-0   lg:grid lg:grid-cols-2">
+    <div className=" relative h-[calc(100vh)]  px-0   lg:grid lg:grid-cols-2">
       <div className="relative flex-col p-10  text-background lg:flex lg:h-full lg:justify-center ">
         <Image
           src="/images/home.jpg"

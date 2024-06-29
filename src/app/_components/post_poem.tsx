@@ -14,8 +14,8 @@ export const PostPoem = ({ poem }: PoemProps) => {
 
   return (
     <>
-      <div className="z-0 flex w-full rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  lg:w-4/5 xl:w-4/5 ">
-        <div className="flex basis-full flex-col gap-4 p-8 md:px-12">
+      <div className="z-0 flex  w-full rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  lg:w-4/5 xl:w-4/5 ">
+        <div className="flex basis-full justify-between flex-col gap-4 p-8 md:px-12">
         <h1 className="text-md  lg:text-lg text-right italic text-primary/90">
         {createdAt.toLocaleDateString("es-ES", {
           year: "numeric",
