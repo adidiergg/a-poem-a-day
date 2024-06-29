@@ -11,7 +11,7 @@ const fontGaramond = FontGaramond({ weight: ["400"], subsets: ["latin"] });
 export const Daily = ()=>{
     const { data,isLoading,isError} = api.poem.getLatest.useQuery();
     const { id,title,content,author } = data ?? {};
-    if(isLoading) return <Spinner/>
+    if(isLoading) return <Spinner size={32} />
     
     return (
         <>

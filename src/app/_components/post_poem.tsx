@@ -27,7 +27,7 @@ export const PostPoem = ({ poem }: PoemProps) => {
           <h1 className="mt-1 text-center text-2xl font-bold text-primary/90 lg:text-2xl">
             {title}
           </h1>
-          <div className="border-l-4 border-primary/90 px-4 overflow-y-scroll">
+          <div className="border-l-4 border-primary/90 px-4 ">
             <Markdown
               className={cn(
                 "truncate mb-4 mt-1 text-center text-lg text-primary/80",

@@ -12,10 +12,15 @@ export const Posts = () => {
   if (isError) return <h1>Error de conexión</h1>;
   return (
     <>
+        { poems?.length && <h1 className="text-center text-3xl font-medium text-background  lg:text-3xl">
+            Poemas recientes...
+          </h1>}
         { poems?.length ? 
+         
          poems.map((poem) =>{
             return <Post poem={poem} key={poem.id} />
          })
+         
         :
         <h1>no hay</h1>
         

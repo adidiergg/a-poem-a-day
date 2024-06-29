@@ -42,9 +42,7 @@ export default function Home() {
           className="relative  flex min-h-screen	 w-full flex-col items-center gap-6 overflow-y-visible p-8 py-16 
      "
         >
-          <h1 className="text-center text-3xl font-medium text-background  lg:text-3xl">
-            Poemas recientes...
-          </h1>
+          
 
           <Posts/>
 
