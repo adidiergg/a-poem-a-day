@@ -5,13 +5,14 @@ import { cn} from "~/lib/utils";
 import Markdown from "react-markdown";
 import { Spinner } from "~/components/spinner";
 import Link from "next/link";
+import { SkeletonPoemPost } from "~/components/skeleton_poem_post";
 const fontGaramond = FontGaramond({ weight: ["400"], subsets: ["latin"] });
 
 
 export const Daily = ()=>{
     const { data,isLoading,isError} = api.poem.getLatest.useQuery();
     const { id,title,content,author } = data ?? {};
-    if(isLoading) return <Spinner size={32} />
+    if(isLoading) return <SkeletonPoemPost/>
     
     return (
         <>

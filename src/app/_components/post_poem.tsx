@@ -2,6 +2,8 @@ import type { Poem } from "~/lib/types";
 import Markdown from "react-markdown";
 import { EB_Garamond as FontGaramond } from "next/font/google";
 import { cn } from "~/lib/utils";
+import { Icons } from "~/components/icons";
+import { useRouter } from "next/navigation";
 
 type PoemProps = {
   poem: Poem;
@@ -11,11 +13,13 @@ const fontGaramond = FontGaramond({ weight: ["400"], subsets: ["latin"] });
 
 export const PostPoem = ({ poem }: PoemProps) => {
   const { title, author, content, createdAt } = poem;
-
+  const router = useRouter()
   return (
     <>
       <div className="z-0 flex h-fit w-full rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  lg:w-4/5 xl:w-4/5 ">
         <div className="flex basis-full flex-col justify-between gap-4 p-8 md:px-12">
+          <Icons.back  className="mb-4 size-8 font-bold text-primary/90 hover:text-primary cursor-pointer"
+            aria-hidden="true" onClick={() => router.back()}/>
           <h1 className="text-md  text-right italic text-primary/90 lg:text-lg">
             {createdAt.toLocaleDateString("es-ES", {
               year: "numeric",
