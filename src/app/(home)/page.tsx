@@ -37,13 +37,13 @@ export default function Home() {
 
       </div>
 
-      <div className="overflow-y-scroll  bg-background ">
+      <div className="overflow-y-scroll  bg-primary ">
         <div
           className="relative  flex min-h-screen	 w-full flex-col items-center gap-6 overflow-y-visible p-8 py-16 before:pointer-events-none before:absolute before:inset-0 before:block before:h-full before:w-full before:bg-[url('/images/background-pattern.svg')] 
       before:bg-repeat before:opacity-5 
      "
         >
-          <h1 className="text-center text-3xl font-medium text-primary/90  lg:text-3xl">
+          <h1 className="text-center text-3xl font-medium text-background  lg:text-3xl">
             Poemas recientes...
           </h1>
 
