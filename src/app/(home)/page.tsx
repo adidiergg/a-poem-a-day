@@ -13,15 +13,15 @@ export default function Home() {
   return (
     <div className=" relative h-[calc(100vh)]  px-0   lg:grid lg:grid-cols-2">
       <div className="relative flex-col p-10  text-background lg:flex lg:h-full lg:justify-center ">
-        <Image
+        {/* <Image
           src="/images/home.jpg"
           alt=""
           fill
           className="absolute inset-0 object-cover"
           priority
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-primary/75  to-primary/100 " />
+        /> */}
+        {/* <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-primary/75  to-primary/100 " /> */}
         <div className="relative z-10 flex flex-col items-center justify-center gap-3">
           <h1 className="text-center text-4xl font-bold lg:text-5xl">
             Poema del día
@@ -37,10 +37,9 @@ export default function Home() {
 
       </div>
 
-      <div className="overflow-y-scroll  bg-primary ">
+      <div className="overflow-y-scroll  ">
         <div
-          className="relative  flex min-h-screen	 w-full flex-col items-center gap-6 overflow-y-visible p-8 py-16 before:pointer-events-none before:absolute before:inset-0 before:block before:h-full before:w-full before:bg-[url('/images/background-pattern.svg')] 
-      before:bg-repeat before:opacity-5 
+          className="relative  flex min-h-screen	 w-full flex-col items-center gap-6 overflow-y-visible p-8 py-16 
      "
         >
           <h1 className="text-center text-3xl font-medium text-background  lg:text-3xl">

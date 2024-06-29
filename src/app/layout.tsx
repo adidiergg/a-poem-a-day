@@ -38,7 +38,8 @@ export default function RootLayout({
       lang="en"
       className={cn("min-h-screen antialiased", fontSans.variable)}
     >
-      <body className="bg-background">
+      <body className="bg-primary before:pointer-events-none before:absolute before:inset-0 before:block before:h-full before:w-full before:bg-[url('/images/background-pattern.svg')] 
+      before:bg-repeat before:opacity-5 ">
        
           <TRPCReactProvider>
             <SiteHeader />
