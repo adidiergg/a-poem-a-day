@@ -43,7 +43,7 @@ export default function Home() {
       before:bg-repeat before:opacity-5 
      "
         >
-          <h1 className="text-center text-3xl font-light text-primary/95  lg:text-3xl">
+          <h1 className="text-center text-3xl font-medium text-primary/90  lg:text-3xl">
             Poemas recientes...
           </h1>
 
