@@ -26,6 +26,7 @@ model Poem {
     title    String
     content  String
     author   String
+    views    Int       @default(0)
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 }

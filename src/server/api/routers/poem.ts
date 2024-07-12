@@ -40,7 +40,22 @@ export const poemRouter = createTRPCRouter({
       const response = await ctx.db.poem.findUnique({
         where:{id:Number(input.id)}
       });
+     
       return response;
+    }),
+  addView: publicProcedure
+    .input(z.object({id:z.string()}))
+    .mutation(async ({ctx, input}) => {
+      const response = await ctx.db.poem.update({
+        where:{id:Number(input.id)},
+        data:{
+          views:{
+            increment:1,
+          }
+        }
+      });
+      return response;
+
     }),
 
   // create: protectedProcedure
