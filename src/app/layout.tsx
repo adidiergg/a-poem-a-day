@@ -23,7 +23,7 @@ const fontSans = FontSans({
 });
 
 export const metadata = {
-  title: "Poem daily",
+  title: "Poema del día",
   description: "",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
