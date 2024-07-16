@@ -77,7 +77,7 @@ export const AudioPlayer = (props: {
 
   const generate_text_audio = async () => {
     setStatus(Status.pending);
-    const wav = await tts.predict(
+    const wav: Blob | undefined = await tts.predict(
       {
         text: `${props.title} de ${props.author} ${props.content}`,
         voiceId: "es_ES-davefx-medium",
