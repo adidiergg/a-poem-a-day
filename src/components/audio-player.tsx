@@ -77,7 +77,7 @@ export const AudioPlayer = (props: {
 
   const generate_text_audio = async () => {
     setStatus(Status.pending);
-    const wav: Blob | undefined = await tts.predict(
+    const wav = await tts.predict(
       {
         text: `${props.title} de ${props.author} ${props.content}`,
         voiceId: "es_ES-davefx-medium",
@@ -87,10 +87,14 @@ export const AudioPlayer = (props: {
           `Downloading ${progress.url} - ${Math.round((progress.loaded * 100) / progress.total)}%`,
         );
       },
-    );
-    audio.current.src = URL.createObjectURL(wav);
+    ).then((result)=> {
+      console.log(result);
+
+      audio.current.src = URL.createObjectURL(result);
     audio.current.play();
     setStatus(Status.play);
+    });
+    
   };
 
   const pause = () => {
