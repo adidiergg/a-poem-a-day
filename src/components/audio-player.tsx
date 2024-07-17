@@ -87,12 +87,13 @@ export const AudioPlayer = (props: {
           `Downloading ${progress.url} - ${Math.round((progress.loaded * 100) / progress.total)}%`,
         );
       },
-    ).then((result)=> {
-      console.log(result);
-
-      audio.current.src = URL.createObjectURL(result);
-    audio.current.play();
-    setStatus(Status.play);
+    ).then(async (response)=> {
+      audio.current.src = URL.createObjectURL(response);
+      await audio.current.play();
+      setStatus(Status.play);
+    }).catch(e =>{
+      console.log(e);
+      setStatus(Status.error);
     });
     
   };
@@ -102,8 +103,8 @@ export const AudioPlayer = (props: {
     setStatus(Status.pause);
   };
 
-  const play = () => {
-    audio.current.play();
+  const play = async () => {
+    await audio.current.play();
     setStatus(Status.play);
   };
 
