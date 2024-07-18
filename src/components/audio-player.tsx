@@ -4,6 +4,7 @@ import { use, useState } from "react";
 import { Spinner } from "./spinner";
 import { Icons } from "./icons";
 import { ProgressPie } from "./progress-pie";
+import { SkeletonIcon } from "./skeleton_icon";
 
 enum Status {
   initial = "initial",
@@ -77,7 +78,7 @@ export const AudioPlayer = (props: {
     }
   },[]);
 
-  if (status === Status.pending) return <Spinner size={40} />;
+
 
   const generate_text_audio = async () => {
     setStatus(Status.pending);
@@ -114,6 +115,15 @@ export const AudioPlayer = (props: {
 
   return (
     <div className="relative">
+      {status === Status.pending && (
+        <SkeletonIcon>
+          <Icons.sound
+            className="absolute z-20 size-12 cursor-pointer fill-transparent p-2 font-bold text-primary/90"
+            aria-hidden="true"
+          />
+        </SkeletonIcon>
+      )}
+
       {(status === Status.initial || status===Status.error) && (
         <Icons.sound
           className=" z-20 size-12 cursor-pointer rounded-full  fill-transparent p-2 font-bold text-primary/90 hover:bg-primary/10 hover:text-primary"
@@ -146,10 +156,13 @@ export const AudioPlayer = (props: {
           onClick={play}
           />       
       )}
-      { status !== Status.initial && status !== Status.reset && status !== Status.error && 
+      {  status !== Status.initial && status !== Status.reset && status !== Status.error && status !== Status.pending &&
        <ProgressPie className="z-10 size-12 cursor-pointer rounded-full fill-current  font-bold text-primary/90 hover:bg-primary/10 hover:text-primary -rotate-90" progress={progress} duration={duration}/>
 
-    }
+      }
+      { status === Status.pending && 
+        <Spinner size={48} />
+      }
     </div>
   );
 };
