@@ -8,7 +8,7 @@ type ProgressPieProps = React.HTMLAttributes<SVGElement> & ProgressPie;
 export const ProgressPie = ({progress,duration,...props}:ProgressPieProps) =>{
     const circumference = 2 * 3.14 * 45.5
     const offset = ((circumference/duration)*progress)-circumference;
-    console.log(progress,duration,offset)
+    
     return (
         <>
 

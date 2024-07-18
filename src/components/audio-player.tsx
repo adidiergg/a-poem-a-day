@@ -5,7 +5,7 @@ import { Spinner } from "./spinner";
 import { Icons } from "./icons";
 import { ProgressPie } from "./progress-pie";
 
-export enum Status {
+enum Status {
   initial = "initial",
   pending = "pending",
   play = "play",
@@ -13,6 +13,11 @@ export enum Status {
   reset = "reset",
   error = "error",
 }
+const synth = window.speechSynthesis;
+let text = "Hello everybody!!!!"
+const utterThis = new SpeechSynthesisUtterance(text);
+synth.speak(utterThis);
+
 export const AudioPlayer = (props: {
   title: string;
   content: string;
@@ -23,6 +28,12 @@ export const AudioPlayer = (props: {
   const [progress,setProgress] = useState<number>(0);
   const [duration,setDuration] = useState<number>(0);
   console.log("render");
+  /*
+    const synth = window.speechSynthesis;
+let text = "Hello everybody!!!!"
+const utterThis = new SpeechSynthesisUtterance(text);
+
+  */
   useEffect(() => {
     return () => {
       //audio.current.pause();
@@ -73,7 +84,7 @@ export const AudioPlayer = (props: {
     }
   },[]);
 
-  if (status === Status.pending) return <Spinner size={48} />;
+  if (status === Status.pending) return <Spinner size={40} />;
 
   const generate_text_audio = async () => {
     setStatus(Status.pending);
@@ -112,7 +123,7 @@ export const AudioPlayer = (props: {
     <div className="relative">
       {(status === Status.initial || status===Status.error) && (
         <Icons.sound
-          className=" z-20 size-12 cursor-pointer rounded-full  fill-current p-2 font-bold text-primary/90 hover:bg-primary/10 hover:text-primary"
+          className=" z-20 size-12 cursor-pointer rounded-full  fill-transparent p-2 font-bold text-primary/90 hover:bg-primary/10 hover:text-primary"
           aria-hidden="true"
           onClick={generate_text_audio}
         />

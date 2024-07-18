@@ -1,4 +1,6 @@
-export type IconProps = React.HTMLAttributes<SVGElement>;
+export type IconProps = React.HTMLAttributes<SVGElement> & {
+  mode?: "light" | "dark";
+};
 
 export const Icons = {
   logo: (props: IconProps) => (
@@ -32,36 +34,34 @@ export const Icons = {
   ),
   sound: (props: IconProps) => (
     <svg
-      version="1.1"
-      id="Capa_1"
+      width="800px"
+      height="800px"
+      viewBox="0 0 512 512"
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 232.914 232.914"
       {...props}
     >
       <title>Generar sonido</title>
-      <g>
-        <path d="M9,64.099c-4.971,0-9,4.029-9,9v86.716c0,4.971,4.029,9,9,9s9-4.029,9-9V73.099C18,68.128,13.971,64.099,9,64.099z" />
-        <path
-          d="M51.983,38.092c-4.971,0-9,4.029-9,9v138.73c0,4.971,4.029,9,9,9s9-4.029,9-9V47.092
-		C60.983,42.121,56.954,38.092,51.983,38.092z"
-        />
-        <path
-          d="M94.966,1.896c-4.971,0-9,4.029-9,9v211.121c0,4.971,4.029,9,9,9s9-4.029,9-9V10.896
-		C103.966,5.926,99.937,1.896,94.966,1.896z"
-        />
-        <path
-          d="M137.948,54.361c-4.971,0-9,4.029-9,9v106.193c0,4.971,4.029,9,9,9s9-4.029,9-9V63.361
-		C146.948,58.39,142.919,54.361,137.948,54.361z"
-        />
-        <path
-          d="M180.931,64.099c-4.971,0-9,4.029-9,9v86.716c0,4.971,4.029,9,9,9s9-4.029,9-9V73.099
-		C189.931,68.128,185.901,64.099,180.931,64.099z"
-        />
-        <path
-          d="M223.914,92.919c-4.971,0-9,4.029-9,9v29.077c0,4.971,4.029,9,9,9s9-4.029,9-9v-29.077
-		C232.914,96.948,228.885,92.919,223.914,92.919z"
-        />
-      </g>
+      <path
+        d="M83,384c-13-33-35-93.37-35-128C48,141.12,149.33,48,256,48s208,93.12,208,208c0,34.63-23,97-35,128"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="32px"
+      />
+      <path
+        d="M108.39,270.13l-13.69,8h0C64.47,295.83,63,350.54,91.32,400.33s75.87,75.81,106.1,58.12h0l13.69-8a16.16,16.16,0,0,0,5.78-21.87L130,276A15.74,15.74,0,0,0,108.39,270.13Z"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="32px"
+      />
+      <path
+        d="M403.61,270.13l13.69,8h0c30.23,17.69,31.74,72.4,3.38,122.19s-75.87,75.81-106.1,58.12h0l-13.69-8a16.16,16.16,0,0,1-5.78-21.87L382,276A15.74,15.74,0,0,1,403.61,270.13Z"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="32px"
+      />
     </svg>
   ),
   play: (props: IconProps) => (
@@ -87,6 +87,16 @@ export const Icons = {
       {...props}
     >
       <path d="M64,256H34A222,222,0,0,1,430,118.15V85h30V190H355V160h67.27A192.21,192.21,0,0,0,256,64C150.13,64,64,150.13,64,256Zm384,0c0,105.87-86.13,192-192,192A192.21,192.21,0,0,1,89.73,352H157V322H52V427H82V393.85A222,222,0,0,0,478,256Z" />
+    </svg>
+  ),
+  bookmark: (props: IconProps) => (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path
+        d="M15.75 5H8.25C7.55964 5 7 5.58763 7 6.3125V19L12 15.5L17 19V6.3125C17 5.58763 16.4404 5 15.75 5Z"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   ),
 };
