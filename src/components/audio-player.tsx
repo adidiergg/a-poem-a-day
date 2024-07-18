@@ -14,7 +14,7 @@ enum Status {
   error = "error",
 }
 const synth = window.speechSynthesis;
-let text = "Hello everybody!!!!"
+const text = "Hello everybody!!!!"
 const utterThis = new SpeechSynthesisUtterance(text);
 synth.speak(utterThis);
 
