@@ -13,10 +13,8 @@ enum Status {
   reset = "reset",
   error = "error",
 }
-const synth = window.speechSynthesis;
-const text = "Hello everybody!!!!"
-const utterThis = new SpeechSynthesisUtterance(text);
-synth.speak(utterThis);
+
+
 
 export const AudioPlayer = (props: {
   title: string;
@@ -28,12 +26,7 @@ export const AudioPlayer = (props: {
   const [progress,setProgress] = useState<number>(0);
   const [duration,setDuration] = useState<number>(0);
   console.log("render");
-  /*
-    const synth = window.speechSynthesis;
-let text = "Hello everybody!!!!"
-const utterThis = new SpeechSynthesisUtterance(text);
-
-  */
+ 
   useEffect(() => {
     return () => {
       //audio.current.pause();
