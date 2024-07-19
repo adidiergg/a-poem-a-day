@@ -9,10 +9,9 @@ import { Daily } from "../_components/daily";
 const fontGreatVibes = FontGreatVibes({ weight: ["400"], subsets: ["latin"] });
 
 export default function Home() {
- 
   return (
-    <div className=" relative h-[calc(100vh)]  px-0   lg:grid lg:grid-cols-2">
-      <div className="relative flex-col p-10  text-background lg:flex lg:h-full lg:justify-center ">
+    <div className="relative flex flex-col px-0 lg:flex-row">
+      <div className="flex  basis-1/2   flex-col p-10 text-background  lg:sticky lg:top-0 lg:h-screen lg:justify-center ">
         {/* <Image
           src="/images/home.jpg"
           alt=""
@@ -22,7 +21,7 @@ export default function Home() {
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         /> */}
         {/* <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-primary/75  to-primary/100 " /> */}
-        <div className="relative z-10 flex flex-col items-center justify-center gap-3">
+        <div className="relative z-10 flex flex-col  items-center justify-center gap-3">
           <h1 className="text-center text-4xl font-bold lg:text-5xl">
             Poema del día
           </h1>
@@ -30,22 +29,13 @@ export default function Home() {
             Un poema al día, alegra el alma y la vida
           </p>
 
-          <Daily/>
+          <Daily />
         </div>
-
-        
-
       </div>
 
-      <div className="overflow-y-scroll  ">
-        <div
-          className="relative  flex min-h-screen	 w-full flex-col items-center gap-6 overflow-y-visible p-8 py-16 
-     "
-        >
-          
-
-          <Posts/>
-
+      <div className="basis-1/2">
+        <div className="relative  flex min-h-screen	 w-full flex-col items-center gap-6 overflow-y-visible p-8 py-16">
+          <Posts />
         </div>
       </div>
     </div>
