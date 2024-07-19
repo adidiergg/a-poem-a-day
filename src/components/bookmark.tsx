@@ -24,7 +24,7 @@ export const BookMark = ({poem}:BookMarkProps) => {
     return (
         <>
             {status === Status.success && (
-                <Icons.bookmark className="z-20 size-12 cursor-pointer rounded-full fill-transparent  font-bold text-primary/90 hover:bg-primary/10 hover:text-primary " />
+                <Icons.bookmark className=" size-12 cursor-pointer rounded-full fill-transparent  font-bold text-primary/90 hover:bg-primary/10 hover:text-primary " />
             )}
         </>
     )

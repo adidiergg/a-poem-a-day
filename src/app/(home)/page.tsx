@@ -11,7 +11,7 @@ const fontGreatVibes = FontGreatVibes({ weight: ["400"], subsets: ["latin"] });
 export default function Home() {
   return (
     <div className="relative flex flex-col px-0 lg:flex-row">
-      <div className="flex  basis-1/2   flex-col p-10 text-background  lg:sticky lg:top-0 lg:h-screen lg:justify-center ">
+      <div className="flex  basis-1/2   flex-col p-10 py-16 text-background  lg:sticky lg:top-0 lg:h-screen lg:justify-center ">
         {/* <Image
           src="/images/home.jpg"
           alt=""
@@ -21,7 +21,7 @@ export default function Home() {
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         /> */}
         {/* <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-primary/75  to-primary/100 " /> */}
-        <div className="relative z-10 flex flex-col  items-center justify-center gap-3">
+        <div className="relative  flex flex-col  items-center justify-center gap-3">
           <h1 className="text-center text-4xl font-bold lg:text-5xl">
             Poema del día
           </h1>
