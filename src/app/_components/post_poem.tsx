@@ -20,7 +20,7 @@ export const PostPoem = ({ poem }: PoemProps) => {
 
   return (
     <>
-      <div className="z-0 flex h-fit  w-full rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  lg:w-3/5 xl:w-3/5 ">
+      <div className="z-0 flex h-full  w-full rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  ">
         <div className="flex basis-full flex-col justify-between gap-4 p-8 md:px-12">
           <div className="flex flex-row justify-between">
             <Icons.back
@@ -35,14 +35,13 @@ export const PostPoem = ({ poem }: PoemProps) => {
             </div>
           </div>
 
-          <h1 className="mt-1 text-center text-2xl font-bold text-primary/90 lg:text-2xl">
-            {title}
-          </h1>
-          <span className="text-md lg:text-md text-center italic text-primary/90">
-            {author}
-          </span>
+          
+          
 
-          <div className="">
+          <div className="overflow-y-scroll">
+            <h1 className="mt-1 text-center text-2xl font-bold text-primary/90 lg:text-2xl">
+              {title}
+            </h1>
             <Markdown
               className={cn(
                 "mb-4 mt-1 text-center text-lg text-primary/80 lg:text-lg",
@@ -52,14 +51,11 @@ export const PostPoem = ({ poem }: PoemProps) => {
               {content}
             </Markdown>
           </div>
-
-          <h1 className="text-md  lg:text-md text-left italic text-primary/90">
-            {createdAt.toLocaleDateString("es-ES", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </h1>
+          
+          <span className="text-md lg:text-md text-center italic text-primary/90">
+            {author}
+          </span>
+          
         </div>
       </div>
     </>
