@@ -6,23 +6,27 @@ import { SkeletonPoemPost } from "~/components/skeleton_poem_post";
 import { Spinner } from "~/components/spinner";
 import { api } from "~/trpc/react";
 import { Posts } from "~/app/_components/posts";
+import { useParams } from "next/navigation";
+/*
 interface PoemPageProps {
   params: {
-    id: string;
+    id: int;
   };
 }
+*/
 
-export default function PoemPage({ params }: PoemPageProps) {
-  const id = decodeURIComponent(params.id);
+export default function PoemPage() {
+  //const id = decodeURIComponent(params.id);
+  const {id} = useParams<{ id: string }>()
+  //const paramsc = useParams<{ tag: string; item: string }>()
+  //const id = "1";
+  console.log(id);
   const { data, isLoading, isError } = api.poem.getById.useQuery({ id });
-  const { mutate } = api.poem.addView.useMutation();
-  useEffect(() => {
-    mutate({ id });
-  }, []);
+  
 
-  if (isLoading) return <Spinner size={40} />;
+  
   if (isError) return <div>error</div>;
-  if (data === null) return <div>not found</div>;
+  if (data === null) return <div className="text-red-700">not found</div>;
   return (
     <div className="relative flex flex-col  px-0 lg:flex-row">
       <div className="flex basis-2/3 flex-col justify-center px-8 pb-8 pt-16 lg:sticky lg:top-0 lg:h-screen">

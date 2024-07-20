@@ -12,8 +12,8 @@ export const Posts = () => {
   if (isError) return <h1>Error de conexión</h1>;
   return (
     <>
-        { poems?.length && <h1 className="text-center text-3xl font-semibold text-background  lg:text-3xl">
-            Poemas recientes...
+        { poems?.length && <h1 className="text-center text-xl font-semibold text-background">
+            
           </h1>}
         { poems?.length ? 
          

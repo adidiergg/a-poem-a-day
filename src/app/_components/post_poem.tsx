@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { api } from "~/trpc/react";
 import type { Poem } from "~/lib/types";
 import Markdown from "react-markdown";
 import { EB_Garamond as FontGaramond } from "next/font/google";
@@ -17,6 +19,11 @@ export const PostPoem = ({ poem }: PoemProps) => {
   const { id, title, author, content, createdAt } = poem;
 
   const router = useRouter();
+
+  const { mutate } = api.poem.addView.useMutation();
+  useEffect(() => {
+    mutate({ id });
+  }, []);
 
   return (
     <>

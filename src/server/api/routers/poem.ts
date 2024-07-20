@@ -44,10 +44,10 @@ export const poemRouter = createTRPCRouter({
       return response;
     }),
   addView: publicProcedure
-    .input(z.object({id:z.string()}))
+    .input(z.object({id:z.number()}))
     .mutation(async ({ctx, input}) => {
       const response = await ctx.db.poem.update({
-        where:{id:Number(input.id)},
+        where:{id:input.id},
         data:{
           views:{
             increment:1,
