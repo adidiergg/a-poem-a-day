@@ -10,9 +10,9 @@ export const  Post = ({ poem }: PoemProps) => {
   const { id, title, author, content, createdAt } = poem;
   
   return (
-    <div className="z-0 flex  w-full flex-col rounded-lg bg-background p-4 py-8 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px] md:px-12 lg:w-4/5 xl:w-4/5">      
+    <div className="z-0 flex  w-full flex-col rounded-lg bg-background p-4 py-8 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px] md:px-12 ">      
       <Link href={`/poems/${encodeURIComponent(id)}`} >
-        <h1 className="truncate   text-lg  font-bold text-primary/90 hover:text-primary">
+        <h1 className="truncate text-lg  font-bold text-primary/90 hover:text-primary">
           {title}
         </h1>
       </Link>

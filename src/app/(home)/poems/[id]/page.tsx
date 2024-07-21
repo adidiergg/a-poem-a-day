@@ -2,41 +2,29 @@
 import { useEffect } from "react";
 import { Post } from "~/app/_components/post";
 import { PostPoem } from "~/app/_components/post_poem";
-import { SkeletonPoemPost } from "~/components/skeleton_poem_post";
+import { SkeletonDailyPoem } from "~/components/skeleton_daily_poem";
 import { Spinner } from "~/components/spinner";
 import { api } from "~/trpc/react";
 import { Posts } from "~/app/_components/posts";
 import { useParams } from "next/navigation";
-/*
-interface PoemPageProps {
-  params: {
-    id: int;
-  };
-}
-*/
+import {number, z} from "zod";
+import { SkeletonPoem } from "~/components/skelenton_poem";
 
 export default function PoemPage() {
-  //const id = decodeURIComponent(params.id);
   const {id} = useParams<{ id: string }>()
-  //const paramsc = useParams<{ tag: string; item: string }>()
-  //const id = "1";
-  console.log(id);
-  const { data, isLoading, isError } = api.poem.getById.useQuery({ id });
+  const isNumber = z.string().regex( /^\d+$/ );
+  if(isNumber.safeParse(id).success === false){
+    return <div className="text-red-700">not found</div>;
+  }
+  const { data, isLoading, isError } = api.poem.getById.useQuery({ id: Number(id) });
   
 
-  
+  if (isLoading) return <SkeletonPoem />;
   if (isError) return <div>error</div>;
   if (data === null) return <div className="text-red-700">not found</div>;
   return (
-    <div className="relative flex flex-col  px-0 lg:flex-row">
-      <div className="flex basis-2/3 flex-col justify-center px-8 pb-8 pt-16 lg:sticky lg:top-0 lg:h-screen">
-        {data ? <PostPoem poem={data} /> : null}
-      </div>
-      <div className="basis-1/3">
-        <div className="relative  flex min-h-screen	 w-full flex-col items-center gap-6 overflow-y-visible p-8 py-16">
-          <Posts />
-        </div>
-      </div>
-    </div>
+    <>
+        {data ? <PostPoem poem={data} /> : <SkeletonPoem />}
+    </>
   );
 }
