@@ -1,8 +1,11 @@
+"use client";
+import { BookMarks } from "~/app/_components/BookMarks";
 
 export default function PageBookMarks(){
+
     return (
         <>
-            <h1>Favourites</h1>
+            <BookMarks />
         </>
     );
 }

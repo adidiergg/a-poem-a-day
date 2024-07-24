@@ -1,4 +1,5 @@
 import { stored } from "@diffusionstudio/vits-web";
+import { read } from "fs";
 import { useCallback, useEffect, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 
@@ -26,6 +27,14 @@ export function useLocalStorage<T>(
     },
     [options],
   );
+  
+  useEffect(()=>{
+    window.addEventListener('storage',handleStorageChange);
+    return () => {
+      window.removeEventListener('storage',handleStorageChange);
+    }
+  },[])
+  
 
   const deserializer = useCallback<(value: string) => T>(
     (value) => {
@@ -77,7 +86,7 @@ export function useLocalStorage<T>(
       const newValue = value instanceof Function ? value(readValue()) : value;
       window.localStorage.setItem(key, serializer(newValue));
       setStoredValue(newValue);
-      //window.dispatchEvent(new StorageEvent("local-storage", { key }));
+      window.dispatchEvent(new Event('storage'));
     } catch (error) { }
   };
 
@@ -85,9 +94,17 @@ export function useLocalStorage<T>(
     const defaultValue = initialValue instanceof Function ? initialValue() : initialValue;
     window.localStorage.removeItem(key);
     setStoredValue(defaultValue);
-    //window.dispatchEvent(new StorageEvent('local-storage', { key }))
+    window.dispatchEvent(new Event('storage'));
 
   }
+  
+  const handleStorageChange = useCallback(
+      (event: StorageEvent)=>{
+
+        setStoredValue(readValue());
+      }
+    ,[key,readValue]);
+  
 
 return [storedValue, setValue, removeValue];
 }

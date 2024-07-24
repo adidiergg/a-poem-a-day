@@ -7,7 +7,7 @@ import { cn } from "~/lib/utils";
 import { Icons } from "~/components/icons";
 import { useRouter } from "next/navigation";
 import { AudioPlayer } from "~/components/audio-player";
-import { BookMark } from "~/components/bookmark";
+import { BtnBookMark } from "~/components/btn-bookmark";
 
 type PoemProps = {
   poem: Poem;
@@ -38,7 +38,7 @@ export const PostPoem = ({ poem }: PoemProps) => {
 
             <div className="flex flex-row gap-1">
               <AudioPlayer title={title} content={content} author={author} />
-              <BookMark poem={poem} />
+              <BtnBookMark bookmark={poem} />
             </div>
           </div>
 

@@ -34,7 +34,7 @@ export default function Home() {
       </div>
 
       <div className="basis-1/3">
-        <div className="relative  flex min-h-screen	 w-full flex-col items-center gap-6 p-8 py-16">
+        <div className="relative  flex min-h-screen	 w-full flex-col items-center gap-3 p-8 py-16">
           <Posts />
         </div>
       </div>

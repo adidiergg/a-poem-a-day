@@ -1,5 +1,4 @@
 import { Skeleton } from "./ui/skeleton";
-import { BookMark } from "./bookmark";
 import { useRouter } from "next/router";
 import Markdown from "react-markdown";
 import { EB_Garamond as FontGaramond } from "next/font/google";

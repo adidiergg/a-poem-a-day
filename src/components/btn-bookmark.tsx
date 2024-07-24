@@ -3,7 +3,7 @@ import { Icons } from "./icons";
 import { Poem } from "~/lib/types";
 import { useLocalStorage } from "~/hooks/useLocalStorage";
 import { set } from "zod";
-
+import { BookMark } from "~/lib/types";
 enum Status {
   saved = "saved",
   success = "success",
@@ -12,31 +12,25 @@ enum Status {
 }
 
 type BookMarkProps = {
-  poem: Poem;
+  bookmark: BookMark;
 };
 
-type BookMark = {
-  id: number;
-  title: string;
-  author: string;
-} | null;
-
-export const BookMark = ({ poem }: BookMarkProps) => {
-  const { id, title, author } = poem;
+export const BtnBookMark = ({ bookmark }: BookMarkProps) => {
   const [value, setValue, removeValue] = useLocalStorage<BookMark>(
-    String(id),
+    String(bookmark?.id),
     null,
   );
   const [status, setStatus] = useState<Status>(Status.pending);
-  console.log("value", value);
+  //console.log("value", value);
   const addBookMark = () => {
-    setValue({ id, title, author });
-    setStatus(Status.saved);
+    setValue(bookmark);
+    //setStatus(Status.saved);
   };
+
 
   const removeBookMark = () => {
     removeValue();
-    setStatus(Status.success);
+    //setStatus(Status.success);
   };
 
   useEffect(() => {
@@ -47,10 +41,20 @@ export const BookMark = ({ poem }: BookMarkProps) => {
     }
   }, []);
 
+
+  useEffect(() => {
+    if (value) {
+      setStatus(Status.saved);
+    } else {
+      setStatus(Status.success);
+    }
+    //window.dispatchEvent(new Event('storage'))
+    
+  }, [value]);
+
   return (
     <>
       {status === Status.success && (
-        
         <Icons.bookmark
           className=" size-12 cursor-pointer rounded-full fill-transparent  font-bold text-primary/90 hover:bg-primary/10 hover:text-primary "
           onClick={addBookMark}
