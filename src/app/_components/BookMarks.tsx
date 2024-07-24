@@ -10,6 +10,7 @@ export const BookMarks = () => {
   const handleStorage = (e: StorageEvent) => {
     setBookmarks(Object.keys(localStorage));
   }
+  console.log(bookmarks);
 
 
   useEffect(() => {
