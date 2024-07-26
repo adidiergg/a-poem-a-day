@@ -24,13 +24,11 @@ export const BtnBookMark = ({ bookmark }: BookMarkProps) => {
   //console.log("value", value);
   const addBookMark = () => {
     setValue(bookmark);
-    //setStatus(Status.saved);
   };
 
 
   const removeBookMark = () => {
     removeValue();
-    //setStatus(Status.success);
   };
 
   useEffect(() => {
@@ -48,8 +46,7 @@ export const BtnBookMark = ({ bookmark }: BookMarkProps) => {
     } else {
       setStatus(Status.success);
     }
-    //window.dispatchEvent(new Event('storage'))
-    
+   
   }, [value]);
 
   return (

@@ -10,7 +10,7 @@ export const Post = ({ poem }: PoemProps) => {
   return (
     <div className="z-0 flex min-h-32  w-full flex-col rounded-lg bg-background gap-2 p-4 py-8 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px] md:px-12 ">
       <Link href={`/poems/${encodeURIComponent(id)}`}>
-        <h1 className="truncate  text-lg  font-bold text-primary/90 hover:text-primary">
+        <h1 className="  text-lg  font-bold text-primary/90 hover:text-primary">
           {title}
         </h1>
       </Link>

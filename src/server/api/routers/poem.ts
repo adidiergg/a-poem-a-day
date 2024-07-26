@@ -9,7 +9,7 @@ export const poemRouter = createTRPCRouter({
   all: publicProcedure
     .query(async  ({ ctx }) => {
       
-      const response  = await ctx.db.poem.findMany({
+      const response  = await ctx.db.poems.findMany({
         select:{
           id: true,
           title: true,
@@ -20,12 +20,14 @@ export const poemRouter = createTRPCRouter({
         orderBy:{
           createdAt: "desc",
         },
+        take: 100,
       });
+
       return response;
     }),
   getLatest: publicProcedure
     .query(async ({ ctx }) => {
-      const response = await ctx.db.poem.findMany({
+      const response = await ctx.db.poems.findMany({
         orderBy:{createdAt: "desc"},
         take:1,
       });
@@ -35,19 +37,31 @@ export const poemRouter = createTRPCRouter({
       return undefined;
     }),
   getById: publicProcedure
-    .input(z.object({id:z.number()}))
+    .input(z.object({id:z.string()}))
     .query(async ({ctx , input}) => {
-      console.log(input.id,"aqui nene");
-      const response = await ctx.db.poem.findUnique({
+      const response = await ctx.db.poems.findUnique({
         where:{id:input.id}
+      }).catch((error) => {
+        throw new Error("Poem not found");
       });
      
       return response;
     }),
+  
+  getBookMarks: publicProcedure
+    .input(z.object({bookmarks:z.array(z.string())}))
+    .query(async ({ctx,input}) => {
+      const response = await ctx.db.poems.findMany({
+        where:{
+          id:{ in: input.bookmarks} 
+          }
+      });
+    }),
+
   addView: publicProcedure
-    .input(z.object({id:z.number()}))
+    .input(z.object({id:z.string()}))
     .mutation(async ({ctx, input}) => {
-      const response = await ctx.db.poem.update({
+      const response = await ctx.db.poems.update({
         where:{id:input.id},
         data:{
           views:{

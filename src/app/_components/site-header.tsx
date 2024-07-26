@@ -10,7 +10,7 @@ export function SiteHeader() {
 
   const changeColor = () =>{
     if(window.scrollY > 1){
-      setStyles('bg-primary/80')
+      setStyles('bg-primary/90')
     }else{
       setStyles('bg-transparent')
     }

@@ -17,16 +17,16 @@ export const Daily = ()=>{
     return (
         <>
         { data ? 
-        <div className="z-0 flex w-full lg:w-fit rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  ">
+        <div className="z-0 flex w-full  lg:max-w-prose rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  ">
         <div className="flex flex-col p-8 md:px-12">
           <div className="border-l-4 border-primary/90 px-4">
           <Markdown  className={cn(
                 "mb-4 mt-1  text-lg text-primary/80 lg:text-lg",
                 fontGaramond.className,
-              )}>{content?.split("\n").slice(0,8).join("\n")}</Markdown>
+              )}>{content?.split("\n").slice(0,12).join("\n")}</Markdown>
           </div>
           <Link href={`/poems/${encodeURIComponent(String(id))}`} >
-          <h1 className="mt-1 text-2xl font-bold text-primary/90 hover:text-primary lg:text-2xl">
+          <h1 className="mt-1 text-xl font-bold text-primary/90 hover:text-primary lg:text-xl">
             { title}
           </h1>
           </Link>

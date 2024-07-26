@@ -1,17 +1,14 @@
 import { useEffect, useState } from "react";
-import { Posts } from "./posts";
 import { PostBookMark } from "./post_bookmark";
-import { number } from "zod";
+import { api } from "~/trpc/react";
 
 export const BookMarks = () => {
   const [bookmarks, setBookmarks] = useState<string[]>([]);
-
+  const { data: poems, isLoading, isError } = api.poem.getBookMarks.useQuery({bookmarks});
  
   const handleStorage = (e: StorageEvent) => {
     setBookmarks(Object.keys(localStorage));
   }
-  console.log(bookmarks);
-
 
   useEffect(() => {
     window.addEventListener('storage',handleStorage);
