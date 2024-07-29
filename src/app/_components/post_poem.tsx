@@ -8,6 +8,7 @@ import { Icons } from "~/components/icons";
 import { useRouter } from "next/navigation";
 import { AudioPlayer } from "~/components/audio-player";
 import { BtnBookMark } from "~/components/btn-bookmark";
+import { Tag } from "~/components/tag";
 
 type PoemProps = {
   poem: Poem;
@@ -16,7 +17,7 @@ type PoemProps = {
 const fontGaramond = FontGaramond({ weight: ["400"], subsets: ["latin"] });
 
 export const PostPoem = ({ poem }: PoemProps) => {
-  const { id, title, author, content, createdAt } = poem;
+  const { id, title, author, content,tags } = poem;
 
   const router = useRouter();
 
@@ -42,9 +43,6 @@ export const PostPoem = ({ poem }: PoemProps) => {
             </div>
           </div>
 
-          
-          
-
           <div className="overflow-y-scroll">
             <h1 className="mt-1 text-center text-2xl font-bold text-primary/90 lg:text-2xl">
               {title}
@@ -58,14 +56,18 @@ export const PostPoem = ({ poem }: PoemProps) => {
               {content}
             </Markdown>
           </div>
-          
+
           <span className="text-md lg:text-md text-center italic text-primary/90">
             {author}
           </span>
-          
+          <div className="flex flex-row gap-1 flex-wrap">
+            {tags.map((tag) => (
+              <Tag key={tag.tag.id} id={tag.tag.id} tag={tag.tag.name} />
+            ))
+            }
+          </div>
         </div>
       </div>
     </>
   );
 };
-

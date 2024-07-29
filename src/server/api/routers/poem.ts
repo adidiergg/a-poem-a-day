@@ -10,12 +10,22 @@ export const poemRouter = createTRPCRouter({
     .query(async  ({ ctx }) => {
       
       const response  = await ctx.db.poems.findMany({
+        relationLoadStrategy: "join",
         select:{
           id: true,
           title: true,
-          author: true,
           content: true,
-          createdAt: true,
+          author: true,
+          tags : {
+            select :{
+              tag: {
+                select:{
+                  id: true,
+                  name: true,
+                }
+              },
+            }
+          }
         },
         orderBy:{
           createdAt: "desc",
@@ -28,6 +38,22 @@ export const poemRouter = createTRPCRouter({
   getLatest: publicProcedure
     .query(async ({ ctx }) => {
       const response = await ctx.db.poems.findMany({
+        select:{
+          id: true,
+          title: true,
+          content: true,
+          author: true,
+          tags : {
+            select :{
+              tag: {
+                select:{
+                  id: true,
+                  name: true,
+                }
+              },
+            }
+          }
+        },
         orderBy:{createdAt: "desc"},
         take:1,
       });
@@ -40,6 +66,23 @@ export const poemRouter = createTRPCRouter({
     .input(z.object({id:z.string()}))
     .query(async ({ctx , input}) => {
       const response = await ctx.db.poems.findUnique({
+        relationLoadStrategy: "join",
+        select:{
+          id: true,
+          title: true,
+          author: true,
+          content: true,
+          tags : {
+            select :{
+              tag: {
+                select:{
+                  id: true,
+                  name: true,
+                }
+              },
+            }
+          }
+        },
         where:{id:input.id}
       }).catch((error) => {
         throw new Error("Poem not found");

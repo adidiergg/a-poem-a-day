@@ -1,23 +1,47 @@
 generator client {
-  provider = "prisma-client-js"
-  previewFeatures = ["postgresqlExtensions"]
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions","relationJoins"]
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-  extensions = [pgcrypto]
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [pgcrypto, uuid_ossp(map: "uuid-ossp", schema: "xata")]
 }
 
 model Poems {
-  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   title          String
   content        String
   author         String
-  views          Int      @default(0)
-  createdAt      DateTime @default(now())
-  xata_id        String   @unique(map: "Poem__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  views          Int         @default(0)
+  xata_version   Int         @default(0)
+  xata_createdat DateTime    @default(now()) @db.Timestamptz(6)
+  xata_updatedat DateTime    @default(now()) @db.Timestamptz(6)
+  xata_id        String      @unique(map: "Poem__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  id             String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt      DateTime    @default(now())
+  tags           PoemsTags[]
+}
+
+model Tags {
+  id             Int         @id @default(autoincrement())
+  name           String
+  xata_updatedat DateTime    @default(now()) @db.Timestamptz(6)
+  xata_id        String      @unique(map: "Tags__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  xata_version   Int         @default(0)
+  xata_createdat DateTime    @default(now()) @db.Timestamptz(6)
+  poems          PoemsTags[]
+}
+
+model PoemsTags {
+  tagId          Int
+  poemId         String   @db.Uuid
+  xata_updatedat DateTime @default(now()) @db.Timestamptz(6)
+  xata_id        String   @unique(map: "PoemsTags__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
   xata_version   Int      @default(0)
   xata_createdat DateTime @default(now()) @db.Timestamptz(6)
-  xata_updatedat DateTime @default(now()) @db.Timestamptz(6)
+  poem           Poems    @relation(fields: [poemId], references: [id])
+  tag            Tags     @relation(fields: [tagId], references: [id])
+
+  @@id([poemId, tagId])
 }
