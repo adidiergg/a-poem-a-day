@@ -13,7 +13,7 @@ interface DownloadProps {
 const fontGaramond = FontGaramond({ weight: ["400"], subsets: ["latin"] });
 
 
-export const Download = forwardRef<HTMLDivElement>((props,ref) => {
+export const Download = forwardRef<HTMLDivElement>(function Download(props,ref)  {
 
     
   const filter = (node: HTMLElement) => {
