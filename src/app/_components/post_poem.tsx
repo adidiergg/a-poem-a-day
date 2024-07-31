@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect,useRef } from "react";
 import { api } from "~/trpc/react";
 import type { Poem } from "~/lib/types";
 import Markdown from "react-markdown";
@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { AudioPlayer } from "~/components/audio-player";
 import { BtnBookMark } from "~/components/btn-bookmark";
 import { Tag } from "~/components/tag";
+import { Download } from "~/components/download";
 
 type PoemProps = {
   poem: Poem;
@@ -21,6 +22,8 @@ export const PostPoem = ({ poem }: PoemProps) => {
 
   const router = useRouter();
 
+  const ref = useRef<HTMLDivElement>(null);
+
   const { mutate } = api.poem.addView.useMutation();
   useEffect(() => {
     mutate({ id });
@@ -28,16 +31,17 @@ export const PostPoem = ({ poem }: PoemProps) => {
 
   return (
     <>
-      <div className="z-0 flex h-full  w-full rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  ">
+      <div  ref={ref} className="z-0 flex h-full  w-full rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  ">
         <div className="flex basis-full flex-col justify-between gap-4 p-8 md:px-12">
-          <div className="flex flex-row justify-between">
+          <div className="flex flex-row justify-between menu">
             <Icons.back
-              className="size-12  cursor-pointer rounded-full fill-current p-2 font-bold text-primary/90 hover:bg-primary/10 hover:text-primary"
+              className="size-12  cursor-pointer rounded-full fill-current p-2  text-primary/90 hover:bg-primary/10 hover:text-primary"
               aria-hidden="true"
               onClick={() => router.back()}
             />
 
             <div className="flex flex-row gap-1">
+              <Download ref={ref}/>
               <AudioPlayer title={title} content={content} author={author} />
               <BtnBookMark bookmark={poem} />
             </div>
@@ -60,7 +64,7 @@ export const PostPoem = ({ poem }: PoemProps) => {
           <span className="text-md lg:text-md text-center italic text-primary/90">
             {author}
           </span>
-          <div className="flex flex-row gap-1 flex-wrap">
+          <div className="tag flex flex-row gap-1 flex-wrap">
             {tags.map((tag) => (
               <Tag key={tag.tag.id} id={tag.tag.id} tag={tag.tag.name} />
             ))

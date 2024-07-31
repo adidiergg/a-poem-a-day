@@ -30,7 +30,7 @@ export const poemRouter = createTRPCRouter({
         orderBy:{
           createdAt: "desc",
         },
-        take: 100,
+        
       });
 
       return response;
