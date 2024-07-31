@@ -37,7 +37,8 @@ export const poemRouter = createTRPCRouter({
     }),
   getLatest: publicProcedure
     .query(async ({ ctx }) => {
-      const response = await ctx.db.poems.findMany({
+      const get_day = await ctx.db.$queryRaw<{poemId:string}[]>`SELECT "poemId" FROM "public"."Dailies" WHERE "day"=DATE_PART('doy', CURRENT_TIMESTAMP)`;
+      const response = await ctx.db.poems.findUnique({
         select:{
           id: true,
           title: true,
@@ -54,13 +55,14 @@ export const poemRouter = createTRPCRouter({
             }
           }
         },
-        orderBy:{createdAt: "desc"},
-        take:1,
+        where:{
+          id: get_day[0]?.poemId }
+      }).catch((error) => {
+        throw new Error("Poem not found");
+        return null;
       });
-      if(response.length){
-        return response[0];
-      }
-      return undefined;
+      
+      return response;
     }),
   getById: publicProcedure
     .input(z.object({id:z.string()}))

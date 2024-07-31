@@ -1,6 +1,6 @@
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["postgresqlExtensions","relationJoins"]
+  previewFeatures = ["postgresqlExtensions", "relationJoins"]
 }
 
 datasource db {
@@ -20,6 +20,7 @@ model Poems {
   xata_id        String      @unique(map: "Poem__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
   id             String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   createdAt      DateTime    @default(now())
+  dailies        Dailies[]
   tags           PoemsTags[]
 }
 
@@ -31,6 +32,16 @@ model Tags {
   xata_version   Int         @default(0)
   xata_createdat DateTime    @default(now()) @db.Timestamptz(6)
   poems          PoemsTags[]
+}
+
+model Dailies {
+  day            Int      @id
+  poemId         String   @db.Uuid
+  xata_id        String   @unique(map: "Dailies__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  xata_version   Int      @default(0)
+  xata_createdat DateTime @default(now()) @db.Timestamptz(6)
+  xata_updatedat DateTime @default(now()) @db.Timestamptz(6)
+  poem           Poems    @relation(fields: [poemId], references: [id])
 }
 
 model PoemsTags {

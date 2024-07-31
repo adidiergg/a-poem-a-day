@@ -1,4 +1,4 @@
-import { useEffect,useRef } from "react";
+import { useEffect, useRef } from "react";
 import { api } from "~/trpc/react";
 import type { Poem } from "~/lib/types";
 import Markdown from "react-markdown";
@@ -18,7 +18,7 @@ type PoemProps = {
 const fontGaramond = FontGaramond({ weight: ["400"], subsets: ["latin"] });
 
 export const PostPoem = ({ poem }: PoemProps) => {
-  const { id, title, author, content,tags } = poem;
+  const { id, title, author, content, tags } = poem;
 
   const router = useRouter();
 
@@ -31,9 +31,9 @@ export const PostPoem = ({ poem }: PoemProps) => {
 
   return (
     <>
-      <div  ref={ref} className="z-0 flex h-full  w-full rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  ">
+      <div className="z-0 flex h-full  w-full rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  ">
         <div className="flex basis-full flex-col justify-between gap-4 p-8 md:px-12">
-          <div className="flex flex-row justify-between menu">
+          <div className="menu flex flex-row justify-between">
             <Icons.back
               className="size-12  cursor-pointer rounded-full fill-current p-2  text-primary/90 hover:bg-primary/10 hover:text-primary"
               aria-hidden="true"
@@ -41,16 +41,19 @@ export const PostPoem = ({ poem }: PoemProps) => {
             />
 
             <div className="flex flex-row gap-1">
-              <Download ref={ref}/>
+              <Download ref={ref} />
               <AudioPlayer title={title} content={content} author={author} />
               <BtnBookMark bookmark={poem} />
             </div>
           </div>
 
-          <div className="overflow-y-scroll">
-            <h1 className="mt-1 text-center text-2xl font-bold text-primary/90 lg:text-2xl">
+          <div ref={ref} className="flex flex-col gap-3 overflow-y-scroll" id="poem" >
+            <h1 className="text-center text-xl font-bold text-primary/90">
               {title}
             </h1>
+            <p className="text-sm text-center italic text-primary/90">
+              {author}
+            </p>
             <Markdown
               className={cn(
                 "mb-4 mt-1 text-center text-lg text-primary/80 lg:text-lg",
@@ -61,14 +64,10 @@ export const PostPoem = ({ poem }: PoemProps) => {
             </Markdown>
           </div>
 
-          <span className="text-md lg:text-md text-center italic text-primary/90">
-            {author}
-          </span>
-          <div className="tag flex flex-row gap-1 flex-wrap">
+          <div className="tag flex flex-row flex-wrap gap-1">
             {tags.map((tag) => (
               <Tag key={tag.tag.id} id={tag.tag.id} tag={tag.tag.name} />
-            ))
-            }
+            ))}
           </div>
         </div>
       </div>

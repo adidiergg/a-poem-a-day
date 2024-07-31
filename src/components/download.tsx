@@ -21,9 +21,10 @@ export const Download = forwardRef<HTMLDivElement>(function Download(props,ref) 
     console.log(!exclusionClasses.some((classname) => node.classList?.contains(classname)))
     return !exclusionClasses.some((classname) => node.classList?.contains(classname));
   }
+
   const ImageConvert = useCallback(() => {
     if (ref && (ref as RefObject<HTMLDivElement>).current){
-      toPng((ref as RefObject<HTMLDivElement>)!.current!,{cacheBust:true,filter:filter,style:{width:"100%",height:"100%"}})
+      toPng((ref as RefObject<HTMLDivElement>)!.current!,{cacheBust:true,style:{padding:'16',backgroundColor:'#fffef5',overflowY:'visible',height:'1200',width:'fit-content'},filter:filter})
      .then((url) =>  {
         const link = document.createElement('a');
         link.download = "download.png";
