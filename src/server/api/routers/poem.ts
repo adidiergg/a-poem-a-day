@@ -35,7 +35,7 @@ export const poemRouter = createTRPCRouter({
 
       return response;
     }),
-  getLatest: publicProcedure
+  getPoemOfDay: publicProcedure
     .query(async ({ ctx }) => {
       const get_day = await ctx.db.$queryRaw<{poemId:string}[]>`SELECT "poemId" FROM "public"."Dailies" WHERE "day"=DATE_PART('doy', CURRENT_TIMESTAMP)`;
       const response = await ctx.db.poems.findUnique({
