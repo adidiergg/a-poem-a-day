@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect } from "react";
 import { api } from "~/trpc/react";
 import type { Poem } from "~/lib/types";
 import Markdown from "react-markdown";
@@ -10,6 +10,7 @@ import { AudioPlayer } from "~/components/audio-player";
 import { BtnBookMark } from "~/components/btn-bookmark";
 import { Tag } from "~/components/tag";
 import { Download } from "~/components/download";
+import { PoemContext } from "~/context/poem-context";
 
 type PoemProps = {
   poem: Poem;
@@ -22,7 +23,7 @@ export const PostPoem = ({ poem }: PoemProps) => {
 
   const router = useRouter();
 
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useContext(PoemContext);
 
   const { mutate } = api.poem.addView.useMutation();
   useEffect(() => {
@@ -31,7 +32,7 @@ export const PostPoem = ({ poem }: PoemProps) => {
 
   return (
     <>
-      <div className="z-0 flex h-full  w-full rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  ">
+      <div className="z-0 flex h-fit min-h-[calc(100vh-96px)]  w-full rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  ">
         <div className="flex basis-full flex-col justify-between gap-4 p-8 md:px-12">
           <div className="menu flex flex-row justify-between">
             <Icons.back
@@ -41,13 +42,13 @@ export const PostPoem = ({ poem }: PoemProps) => {
             />
 
             <div className="flex flex-row gap-1">
-              <Download ref={ref} />
+              <Download ref={ref} />  
               <AudioPlayer title={title} content={content} author={author} />
               <BtnBookMark bookmark={poem} />
             </div>
           </div>
 
-          <div ref={ref} className="flex flex-col gap-3 overflow-y-scroll" id="poem" >
+          <div  className="flex flex-col gap-3" id="poem" >
             <h1 className="text-center text-xl font-bold text-primary/90">
               {title}
             </h1>

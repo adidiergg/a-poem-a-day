@@ -1,6 +1,6 @@
-import { forwardRef, useCallback, useRef,useImperativeHandle, RefObject } from "react";
+import { forwardRef, useCallback, useRef,useImperativeHandle, RefObject, cloneElement } from "react";
 import { Icons } from "./icons";
-import { toPng } from "html-to-image";
+import { toCanvas, toPng, toSvg } from "html-to-image";
 import Markdown from "react-markdown";
 import { EB_Garamond as FontGaramond } from "next/font/google";
 import { cn } from "~/lib/utils";
@@ -15,7 +15,9 @@ const fontGaramond = FontGaramond({ weight: ["400"], subsets: ["latin"] });
 
 export const Download = forwardRef<HTMLDivElement>(function Download(props,ref)  {
 
-    
+  
+  //console.log(ref?.current?.innerHTML);
+  
   const filter = (node: HTMLElement) => {
     const exclusionClasses = ['menu', 'tag',];
     console.log(!exclusionClasses.some((classname) => node.classList?.contains(classname)))
@@ -24,7 +26,7 @@ export const Download = forwardRef<HTMLDivElement>(function Download(props,ref) 
 
   const ImageConvert = useCallback(() => {
     if (ref && (ref as RefObject<HTMLDivElement>).current){
-      toPng((ref as RefObject<HTMLDivElement>)!.current!,{cacheBust:true,style:{padding:'16',backgroundColor:'#fffef5',overflowY:'visible',height:'1200',width:'fit-content'},filter:filter})
+      toPng((ref as RefObject<HTMLDivElement>)!.current!,{cacheBust:true,style:{backgroundColor:"#21212c",justifyItems:"center"},filter:filter})
      .then((url) =>  {
         const link = document.createElement('a');
         link.download = "download.png";
@@ -46,34 +48,3 @@ export const Download = forwardRef<HTMLDivElement>(function Download(props,ref) 
     </>
   );
 });
-
-
-/*
-<div  ref={ref} className="hidden">
-      <div  className=" z-0 flex h-full  w-full rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  ">
-        <div className="flex basis-full flex-col justify-between gap-4 p-8 md:px-12">
-          
-          <div className="">
-            <h1 className="mt-1 text-center text-2xl font-bold text-primary/90 lg:text-2xl">
-              {props.title}
-            </h1>
-            <Markdown
-              className={cn(
-                "mb-4 mt-1 text-center text-lg text-primary/80 lg:text-lg",
-                fontGaramond.className,
-              )}
-            >
-              {props.content}
-            </Markdown>
-          </div>
-
-          <span className="text-md lg:text-md text-center italic text-primary/90">
-            {props.author}
-          </span>
-
-        </div>
-      </div>
-      </div>
-
-
-*/
