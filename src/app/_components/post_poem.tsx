@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect,useRef } from "react";
 import { api } from "~/trpc/react";
 import type { Poem } from "~/lib/types";
 import Markdown from "react-markdown";
@@ -10,7 +10,7 @@ import { AudioPlayer } from "~/components/audio-player";
 import { BtnBookMark } from "~/components/btn-bookmark";
 import { Tag } from "~/components/tag";
 import { Download } from "~/components/download";
-import { PoemContext } from "~/context/poem-context";
+
 
 type PoemProps = {
   poem: Poem;
@@ -23,8 +23,7 @@ export const PostPoem = ({ poem }: PoemProps) => {
 
   const router = useRouter();
 
-  const ref = useContext(PoemContext);
-
+  const ref = useRef<HTMLDivElement>(null);
   const { mutate } = api.poem.addView.useMutation();
   useEffect(() => {
     mutate({ id });
@@ -32,7 +31,7 @@ export const PostPoem = ({ poem }: PoemProps) => {
 
   return (
     <>
-      <div className="z-0 flex h-fit min-h-[calc(100vh-96px)]  w-full rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  ">
+      <div className="z-0 flex  min-h-[calc(100vh-96px)]  w-full rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  ">
         <div className="flex basis-full flex-col justify-between gap-4 p-8 md:px-12">
           <div className="menu flex flex-row justify-between">
             <Icons.back
@@ -42,19 +41,17 @@ export const PostPoem = ({ poem }: PoemProps) => {
             />
 
             <div className="flex flex-row gap-1">
-              <Download ref={ref} />  
+              <Download id={id} ref={ref} />  
               <AudioPlayer title={title} content={content} author={author} />
               <BtnBookMark bookmark={poem} />
             </div>
           </div>
 
-          <div  className="flex flex-col gap-3" id="poem" >
+          <div ref={ref} className="flex flex-col py-8 gap-3" >
             <h1 className="text-center text-xl font-bold text-primary/90">
               {title}
             </h1>
-            <p className="text-sm text-center italic text-primary/90">
-              {author}
-            </p>
+            
             <Markdown
               className={cn(
                 "mb-4 mt-1 text-center text-lg text-primary/80 lg:text-lg",
@@ -63,6 +60,10 @@ export const PostPoem = ({ poem }: PoemProps) => {
             >
               {content}
             </Markdown>
+
+            <p className="text-lg text-center italic text-primary/90">
+              {author}
+            </p>
           </div>
 
           <div className="tag flex flex-row flex-wrap gap-1">

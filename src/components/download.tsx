@@ -6,30 +6,20 @@ import { EB_Garamond as FontGaramond } from "next/font/google";
 import { cn } from "~/lib/utils";
 
 interface DownloadProps {
-  
-  
+  id: string;
 }
 
 const fontGaramond = FontGaramond({ weight: ["400"], subsets: ["latin"] });
 
 
-export const Download = forwardRef<HTMLDivElement>(function Download(props,ref)  {
-
-  
-  //console.log(ref?.current?.innerHTML);
-  
-  const filter = (node: HTMLElement) => {
-    const exclusionClasses = ['menu', 'tag',];
-    console.log(!exclusionClasses.some((classname) => node.classList?.contains(classname)))
-    return !exclusionClasses.some((classname) => node.classList?.contains(classname));
-  }
+export const Download = forwardRef<HTMLDivElement,DownloadProps>(function Download(props,ref)  {
 
   const ImageConvert = useCallback(() => {
     if (ref && (ref as RefObject<HTMLDivElement>).current){
-      toPng((ref as RefObject<HTMLDivElement>)!.current!,{cacheBust:true,style:{backgroundColor:"#21212c",justifyItems:"center"},filter:filter})
+      toPng((ref as RefObject<HTMLDivElement>)!.current!,{cacheBust:true,style:{backgroundColor:"#fffef5"}})
      .then((url) =>  {
         const link = document.createElement('a');
-        link.download = "download.png";
+        link.download = `${props.id}.png`;
         link.href = url;
         link.click();
      }).catch((error) => {
