@@ -5,6 +5,7 @@ import { api } from "~/trpc/react";
 import { cn } from "~/lib/utils";
 import { Posts } from "../_components/posts";
 import { Daily } from "../_components/daily";
+import { Recommendations } from "../_components/recommendations";
 
 const fontGreatVibes = FontGreatVibes({ weight: ["400"], subsets: ["latin"] });
 
@@ -34,8 +35,8 @@ export default function Home() {
       </div>
 
       <div className="basis-1/3">
-        <div className="relative  flex min-h-screen	 w-full flex-col items-center gap-3 p-8 py-16">
-          <Posts />
+        <div className="py-16 p-8">
+          <Recommendations />
         </div>
       </div>
     </div>

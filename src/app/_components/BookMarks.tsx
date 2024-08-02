@@ -23,7 +23,7 @@ export const BookMarks = () => {
   }, []);
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col items-center gap-6  py-8   lg:w-1/3">
+    <div className="relative flex  w-full flex-col items-center gap-6 lg:w-1/3">
       <h1 className="text-center text-xl font-semibold text-background">
         Guardados
       </h1>

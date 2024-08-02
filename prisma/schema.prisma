@@ -10,18 +10,20 @@ datasource db {
 }
 
 model Poems {
-  title          String
-  content        String
-  author         String
-  views          Int         @default(0)
-  xata_version   Int         @default(0)
-  xata_createdat DateTime    @default(now()) @db.Timestamptz(6)
-  xata_updatedat DateTime    @default(now()) @db.Timestamptz(6)
-  xata_id        String      @unique(map: "Poem__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
-  id             String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  createdAt      DateTime    @default(now())
-  dailies        Dailies[]
-  tags           PoemsTags[]
+  title           String
+  content         String
+  author          String
+  views           Int               @default(0)
+  xata_version    Int               @default(0)
+  xata_createdat  DateTime          @default(now()) @db.Timestamptz(6)
+  xata_updatedat  DateTime          @default(now()) @db.Timestamptz(6)
+  xata_id         String            @unique(map: "Poem__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  id              String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt       DateTime          @default(now())
+  dailies         Dailies[]
+  tags            PoemsTags[]
+  posts           Recommendations[] @relation("Post")
+  recommendations Recommendations[] @relation("Recommend")
 }
 
 model Tags {
@@ -55,4 +57,18 @@ model PoemsTags {
   tag            Tags     @relation(fields: [tagId], references: [id])
 
   @@id([poemId, tagId])
+}
+
+model Recommendations {
+  postId          String   @db.Uuid
+  postRecommendId String   @db.Uuid
+  score           Float
+  xata_id         String   @unique(map: "Recommendations__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  xata_version    Int      @default(0)
+  xata_createdat  DateTime @default(now()) @db.Timestamptz(6)
+  xata_updatedat  DateTime @default(now()) @db.Timestamptz(6)
+  post            Poems    @relation("Post", fields: [postId], references: [id])
+  poemRecommend   Poems    @relation("Recommend", fields: [postRecommendId], references: [id])
+
+  @@id([postId, postRecommendId])
 }

@@ -5,7 +5,7 @@ type PoemProps = {
   poem: Poem;
 };
 
-export const Post = ({ poem }: PoemProps) => {
+export const Suggestion = ({ poem }: PoemProps) => {
   const { id, title, author, tags } = poem;
 
   return (

@@ -1,6 +1,7 @@
 import React, {  } from "react";
 import { set } from "zod";
 import { Posts } from "~/app/_components/posts";
+import { Recommendations } from "~/app/_components/recommendations";
 
 interface PoemLayoutProps {
   children: React.ReactNode;
@@ -13,8 +14,8 @@ export default function PoemPage({ children }: PoemLayoutProps) {
         {children}
       </div>
       <div className="basis-1/3">
-        <div className="relative  flex min-h-screen	 w-full flex-col items-center gap-3  p-8 py-16">
-          <Posts />
+        <div className="p-8 py-16">
+          <Recommendations />
         </div>
       </div>
     </div>

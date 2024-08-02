@@ -1,6 +1,4 @@
 
-
-
 interface BookMarkLayoutProps{
     children : React.ReactNode
 }

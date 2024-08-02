@@ -34,7 +34,10 @@ export function SiteHeader() {
             </Link>
           </div>
 
-          <nav className="z-10">
+          <nav className="z-10 flex flex-row">
+            <Link href="/explore">
+              <Icons.explore className="size-12 cursor-pointer fill-transparent text-background hover:text-background/80" />
+            </Link>
             <Link href="/bookmarks">
               <Icons.bookmark className="size-12 cursor-pointer fill-transparent  text-background hover:text-background/80  " />
             </Link>
