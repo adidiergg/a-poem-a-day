@@ -15,11 +15,12 @@ export const BookMarks = () => {
 
   return (
     <div className="relative flex  w-full flex-col items-center gap-6">
-      {data &&
+      {data?.length &&
         data.map((bookmark) => {
           console.log("bookmark", bookmark);
           return <PostBookMark key={bookmark.id} bookmark={bookmark} />;
-        })}
+        })
+      }
     </div>
   );
 };
