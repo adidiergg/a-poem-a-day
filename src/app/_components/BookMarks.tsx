@@ -15,11 +15,15 @@ export const BookMarks = () => {
 
   return (
     <div className="relative flex  w-full flex-col items-center gap-6">
-      {data?.length &&
+      {data?.length ?
         data.map((bookmark) => {
           console.log("bookmark", bookmark);
           return <PostBookMark key={bookmark.id} bookmark={bookmark} />;
         })
+        :
+        <h1 className="text-center text-xl font-semibold text-background">
+          No hay poemas guardados
+        </h1>
       }
     </div>
   );
