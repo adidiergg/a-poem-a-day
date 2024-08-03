@@ -16,38 +16,31 @@ type BookMarkProps = {
 };
 
 export const BtnBookMark = ({ bookmark }: BookMarkProps) => {
-  const [value, setValue, removeValue] = useLocalStorage<BookMark>(
-    String(bookmark?.id),
-    null,
+  const [value, setValue, removeValue] = useLocalStorage<BookMark[]>(
+    "bookmarks",
+    [],
   );
   const [status, setStatus] = useState<Status>(Status.pending);
-  //console.log("value", value);
   const addBookMark = () => {
-    setValue(bookmark);
+    const newBookMark = [...value, bookmark]
+    setValue(newBookMark);
   };
 
 
   const removeBookMark = () => {
-    removeValue();
+    const removeBookMark = value.filter((obj) => obj.id !== bookmark.id).map((obj) => obj);
+    setValue(removeBookMark);
   };
 
   useEffect(() => {
-    if (value) {
+    const isBookMarked = value.findIndex((obj) => obj.id === bookmark.id);
+    if (isBookMarked!==-1) {
       setStatus(Status.saved);
     } else {
       setStatus(Status.success);
     }
-  }, []);
-
-
-  useEffect(() => {
-    if (value) {
-      setStatus(Status.saved);
-    } else {
-      setStatus(Status.success);
-    }
-   
   }, [value]);
+
 
   return (
     <>

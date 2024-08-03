@@ -94,13 +94,21 @@ export const poemRouter = createTRPCRouter({
     }),
   
   getBookMarks: publicProcedure
-    .input(z.object({bookmarks:z.array(z.string())}))
+    .input(z.object({bookmarks:z.array(z.object({id : z.string()}))}))
     .query(async ({ctx,input}) => {
+      const list_bookmarks = input.bookmarks.map((bookmark) => bookmark.id);
       const response = await ctx.db.poems.findMany({
+        select:{
+          id: true,
+          title: true,
+          author: true,
+        },
         where:{
-          id:{ in: input.bookmarks} 
+          id:{ in: list_bookmarks} 
           }
       });
+
+      return response;
     }),
 
   addView: publicProcedure

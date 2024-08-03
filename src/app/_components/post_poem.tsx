@@ -43,7 +43,7 @@ export const PostPoem = ({ poem }: PoemProps) => {
             <div className="flex flex-row gap-1">
               <Download id={id} ref={ref} />  
               <AudioPlayer title={title} content={content} author={author} />
-              <BtnBookMark bookmark={poem} />
+              <BtnBookMark bookmark={{id}} />
             </div>
           </div>
 

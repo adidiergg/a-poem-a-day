@@ -87,7 +87,9 @@ export function useLocalStorage<T>(
       window.localStorage.setItem(key, serializer(newValue));
       setStoredValue(newValue);
       window.dispatchEvent(new Event('storage'));
-    } catch (error) { }
+    } catch (error) {
+      console.warn(`Error setting localStorage key “${key}”:`, error)
+     }
   };
 
   const removeValue = () => {
