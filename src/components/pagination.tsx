@@ -52,7 +52,7 @@ export const Pagination = ({ totalPages, page }: PaginationProps) => {
       {Array.from({ length: totalPages }, (_, i) => i)
         .map((page) => {
           return (
-            <Link href={`${pathname}?${changePage(page)}`}>
+            <Link key={page} href={`${pathname}?${changePage(page)}`}>
               <div
                 className={
                   "flex h-10 w-10 items-center justify-center rounded-md  bg-background fill-primary p-2 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
