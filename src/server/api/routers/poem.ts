@@ -30,7 +30,6 @@ export const poemRouter = createTRPCRouter({
         orderBy:{
           createdAt: "desc",
         },
-        
       });
 
       return response;
@@ -125,29 +124,49 @@ export const poemRouter = createTRPCRouter({
       return response;
 
     }),
+  getPoems : publicProcedure
+      .input(z.object({page:z.number()}))
+      .query(async ({ctx,input}) => {
+        let page = input.page;
+        if(page <= 0){
+          page=1;
+        }
+        const limit = 10;
+        const totalPoems = await ctx.db.poems.count();
+        const totalPages = Math.ceil(totalPoems/limit);
+        const offset = (page-1)*limit; 
+        const results = await ctx.db.poems.findMany({
+          skip: offset,
+          take: limit,
+          select:{
+            id: true,
+            title: true,
+            content: true,
+            author: true,
+            tags : {
+              select :{
+                tag: {
+                  select:{
+                    id: true,
+                    name: true,
+                  }
+                },
+              }
+            }
+          },
+        })
 
-  // create: protectedProcedure
-  //   .input(z.object({ name: z.string().min(1) }))
-  //   .mutation(async ({ ctx, input }) => {
-  //     // simulate a slow db call
-  //     await new Promise((resolve) => setTimeout(resolve, 1000));
-
-  //     return ctx.db.post.create({
-  //       data: {
-  //         name: input.name,
-  //         createdBy: { connect: { id: ctx.session.user.id } },
-  //       },
-  //     });
-  //   }),
-
-  // getLatest: protectedProcedure.query(({ ctx }) => {
-  //   return ctx.db.post.findFirst({
-  //     orderBy: { createdAt: "desc" },
-  //     where: { createdBy: { id: ctx.session.user.id } },
-  //   });
-  // }),
-
-  // getSecretMessage: protectedProcedure.query(() => {
-  //   return "you can now see this secret message!";
-  // }),
+        return {results,totalPages};
+    }),
 });
+
+/*
+  getPoems : publicProcedure
+      .input(z.object({page:z.number()}))
+      .query(async ({ctx}) => {
+        const response = await ctx.db.poems.count();
+        return response;
+    }),
+  
+
+*/

@@ -25,7 +25,7 @@ export function SiteHeader() {
 
 
   return (
-    <header className={cn("fixed  top-0 z-10 w-full p-1 px-3 bg-primary",styles)}>
+    <header className={cn("fixed top-0 z-10 w-full p-1 px-3 bg-primary",styles)}>
       <div className=" flex h-12  items-center ">
         <div className="flex flex-1 items-center justify-between">
           <div className="">
