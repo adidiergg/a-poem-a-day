@@ -31,9 +31,9 @@ export const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
     currentPage+2 === totalPages+2 ? currentPage : currentPage+2 === totalPages+1 ? currentPage-1 : currentPage===totalPages? currentPage: currentPage+2 );
 
   return (
-    <div className="flex w-full flex-row items-center justify-center gap-3 flex-wrap">
+    <div className="flex w-full flex-col lg:flex-row items-center justify-center gap-3 flex-wrap">
       {currentPage !== 1 && (
-        <>
+        <div className="flex flex-row">
           <Link href={`${pathname}?${changePage(1)}`}>
             <Icons.first_page
               className={
@@ -49,7 +49,7 @@ export const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
               }
             />
           </Link>
-        </>
+        </div>
       )}
       
         <div className="flex flex-row gap-3">
@@ -77,7 +77,7 @@ export const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
         </div>
       
       {currentPage !== totalPages && (
-        <>
+        <div className="flex flex-row">
           <Link href={`${pathname}?${changePage(nextPage)}`}>
             <Icons.next
               className={
@@ -92,7 +92,7 @@ export const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
               }
             />
           </Link>
-        </>
+        </div>
       )}
     </div>
   );
