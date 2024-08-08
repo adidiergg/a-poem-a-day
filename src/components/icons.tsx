@@ -164,14 +164,10 @@ export const Icons = {
       version="1.1"
       baseProfile="tiny"
       xmlns="http://www.w3.org/2000/svg"
-      width="800px"
-      height="800px"
       viewBox="0 0 42 42"
       {...props}
     >
-      <polygon
-        points="31,38.32 13.391,21 31,3.68 28.279,1 8,21.01 28.279,41 "
-      />
+      <polygon points="31,38.32 13.391,21 31,3.68 28.279,1 8,21.01 28.279,41 " />
     </svg>
   ),
   next: (props: IconProps) => (
@@ -182,9 +178,62 @@ export const Icons = {
       viewBox="0 0 42 42"
       {...props}
     >
-      <polygon
-        points="11,38.32 28.609,21 11,3.68 13.72,1 34,21.01 13.72,41 "
-      />
+      <polygon points="11,38.32 28.609,21 11,3.68 13.72,1 34,21.01 13.72,41 " />
+    </svg>
+  ),
+  first_page: (props: IconProps) => (
+    <svg viewBox="-2 0 20 20" version="1.1" {...props}>
+      <g
+        id="Free-Icons"
+        stroke="none"
+        strokeWidth="1"
+        fill="none"
+        fillRule="evenodd"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <g
+          transform="translate(-1267.000000, -748.000000)"
+          id="Group"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          <g transform="translate(1263.000000, 746.000000)" id="Shape">
+            <path d="M19,21 L9.5,12 L19,3 M5,3 L5,21"></path>
+          </g>
+        </g>
+      </g>
+    </svg>
+  ),
+  last_page: (props: IconProps) => (
+    <svg
+      viewBox="-1.5 0 20 20"
+      version="1.1"
+      {...props}
+    >
+      <g
+        id="Free-Icons"
+        stroke="none"
+        strokeWidth="1"
+        fill="none"
+        fillRule="evenodd"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <g
+          transform="translate(-1192.000000, -748.000000)"
+          id="Group"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          <g transform="translate(1189.000000, 746.000000)" id="Shape">
+            <path
+              d="M19,21 L9.5,12 L19,3 M5,3 L5,21"
+              transform="translate(11.750000, 12.000000) scale(-1, 1) translate(-11.750000, -12.000000) "
+            ></path>
+          </g>
+        </g>
+      </g>
     </svg>
   ),
 };

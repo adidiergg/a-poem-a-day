@@ -4,11 +4,9 @@ interface ExploreLayoutProps {
 
 export default  function ExploreLayout({children}: ExploreLayoutProps) {
     return (
-        <div className="relative flex flex-col px-0 lg:flex-row">
-            <div className="basis-2/5">
+        <div className="relative flex flex-col  items-center px-0">
             
-            </div>
-            <div className="basis-3/5">
+            <div className="w-full lg:w-3/5">
                 <div className="py-16 p-8">
                     {children}
                 </div>

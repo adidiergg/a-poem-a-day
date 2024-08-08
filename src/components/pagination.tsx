@@ -6,17 +6,17 @@ import { Icons } from "./icons";
 import { cn } from "~/lib/utils";
 
 interface PaginationProps {
-  page: number;
+  currentPage: number;
   totalPages: number;
 }
 
-export const Pagination = ({ totalPages, page }: PaginationProps) => {
+export const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const prevPage = page - 1 >= 2 ? page - 1 : 1;
-  const nextPage = page + 1 <= totalPages ? page + 1 : totalPages;
+  const prevPage = currentPage - 1 >= 2 ? currentPage - 1 : 1;
+  const nextPage = currentPage + 1 <= totalPages ? currentPage + 1 : totalPages;
 
   const changePage = useCallback(
     (value: number) => {
@@ -27,72 +27,68 @@ export const Pagination = ({ totalPages, page }: PaginationProps) => {
     [searchParams],
   );
 
-  console.log(
-    totalPages === page || totalPages - page < 5 ? page - 5 : page,
-    totalPages === page || totalPages - page < 5 ? page : page + 5,
-  );
+  console.log( currentPage-2 === -1 ? 0 : currentPage-2 === 0 ? 0: currentPage-2 === 1 ? 0: currentPage-2 ,
+    currentPage+2 === totalPages+2 ? currentPage : currentPage+2 === totalPages+1 ? currentPage-1 : currentPage===totalPages? currentPage: currentPage+2 );
 
   return (
-    <div className="flex w-full flex-row items-center justify-center gap-1">
-      {page !== 1 && (
+    <div className="flex w-full flex-row items-center justify-center gap-3">
+      {currentPage !== 1 && (
         <>
-          <Link href={`${pathname}?${changePage(prevPage)}`}>
-            <Icons.prev
+          <Link href={`${pathname}?${changePage(1)}`}>
+            <Icons.first_page
               className={
-                "size-10 rounded-md bg-background fill-primary p-3 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
+                "size-12 rounded-md  border-2 border-background/5 bg-primary text-background p-2"
               }
             />
           </Link>
-          <Link href={`${pathname}?${changePage(1)}`}>
-            <div
+
+          <Link href={`${pathname}?${changePage(prevPage)}`}>
+            <Icons.prev
               className={
-                "flex h-10 w-10 items-center justify-center rounded-md  bg-background fill-primary p-2 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
+                "size-12 rounded-md  border-2 border-background/5 bg-primary fill-background p-2"
               }
-            >
-              <span className="font-medium">{1}</span>
-            </div>
+            />
           </Link>
         </>
       )}
-      { page !== totalPages-1 && (
-      <div className="flex flex-row gap-1">
-        {Array.from({ length: totalPages }, (_, i) => i + 1)
-          .slice(
-            totalPages === page ? page - 4 : page-1,
-            totalPages === page ? page : page + 4,
-          )
-          .map((page) => {
-            return (
-              <Link key={page} href={`${pathname}?${changePage(page)}`}>
-                <div
-                  className={cn(
-                    "flex h-10 w-10 items-center justify-center rounded-md  bg-background fill-primary p-2 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]")
-                  }
-                >
-                  <span className="font-medium">{page}</span>
-                </div>
-              </Link>
-            );
-          })}
-      </div>
-      )}
-
-      {page !== totalPages && (
+      
+        <div className="flex flex-row gap-3">
+          {Array.from({ length: totalPages }, (_, i) => i + 1)
+            .slice(
+              currentPage-2 === -1 ? 0 : currentPage-2 === 0 ? 0: currentPage-2 === 1 ? 0: currentPage-3,
+              currentPage+2 === totalPages+2 ? currentPage : currentPage+2 === totalPages+1 ? currentPage+1 : currentPage===totalPages? currentPage: currentPage+2 ,
+            )
+            .map((page) => {
+              return (
+                <Link key={page} href={`${pathname}?${changePage(page)}`}>
+                  <div
+                    className={cn(
+                      "flex h-12 w-12 items-center justify-center rounded-md  p-2",
+                      currentPage === page
+                        ? "border-2 border-background/5 bg-primary text-background"
+                        : "border-2 border-primary bg-background text-primary",
+                    )}
+                  >
+                    <span className="font-medium">{page}</span>
+                  </div>
+                </Link>
+              );
+            })}
+        </div>
+      
+      {currentPage !== totalPages && (
         <>
-          <Link href={`${pathname}?${changePage(totalPages)}`}>
-            <div
-              className={
-                "flex h-10 w-10 items-center justify-center rounded-md  bg-background fill-primary p-3 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
-              }
-            >
-              <span className="font-medium">{totalPages}</span>
-            </div>
-          </Link>
-
           <Link href={`${pathname}?${changePage(nextPage)}`}>
             <Icons.next
               className={
-                "size-10 rounded-md  bg-background fill-primary p-3 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
+                "size-12 rounded-md  border-2 border-background/5 bg-primary fill-background p-2"
+              }
+            />
+          </Link>
+          <Link href={`${pathname}?${changePage(totalPages)}`}>
+            <Icons.last_page
+              className={
+                "size-12 rounded-md  border-2 border-background/5 bg-primary text-background p-2"
               }
             />
           </Link>

@@ -26,7 +26,7 @@ export const Posts = () => {
       )}
 
       {!!data?.results?.length && (
-        <Pagination page={page} totalPages={data?.totalPages} />
+        <Pagination currentPage={page} totalPages={data?.totalPages} />
       )}
     </div>
   );
