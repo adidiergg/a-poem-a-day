@@ -1,4 +1,4 @@
-import { useContext, useEffect,useRef } from "react";
+import {  useEffect,useRef } from "react";
 import { api } from "~/trpc/react";
 import type { Poem } from "~/lib/types";
 import Markdown from "react-markdown";

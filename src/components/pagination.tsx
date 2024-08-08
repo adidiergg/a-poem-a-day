@@ -49,21 +49,24 @@ export const Pagination = ({ totalPages, page }: PaginationProps) => {
         </>
       )}
       <div className="flex flex-row gap-1">
-      {Array.from({ length: totalPages }, (_, i) => i)
-        .map((page) => {
-          return (
-            <Link key={page} href={`${pathname}?${changePage(page)}`}>
-              <div
-                className={
-                  "flex h-10 w-10 items-center justify-center rounded-md  bg-background fill-primary p-2 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
-                }
-              >
-                <span className="font-medium">{page}</span>
-              </div>
-            </Link>
-          );
-        })
-        .slice((totalPages===page ||  totalPages-page < 5 ? page-5 : page),  (totalPages===page ||  totalPages-page < 5 ? page+1 : page+5) )}
+        {Array.from({ length: totalPages }, (_, i) => i)
+          .map((page) => {
+            return (
+              <Link key={page} href={`${pathname}?${changePage(page)}`}>
+                <div
+                  className={
+                    "flex h-10 w-10 items-center justify-center rounded-md  bg-background fill-primary p-2 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
+                  }
+                >
+                  <span className="font-medium">{page}</span>
+                </div>
+              </Link>
+            );
+          })
+          .slice(
+            totalPages === page || totalPages - page < 5 ? page - 5 : page,
+            totalPages === page || totalPages - page < 5 ? page + 1 : page + 5,
+          )}
       </div>
 
       {page !== totalPages && (

@@ -1,9 +1,4 @@
-import Image from "next/image";
 import { Great_Vibes as FontGreatVibes, Great_Vibes } from "next/font/google";
-import { EB_Garamond as FontGaramond } from "next/font/google";
-import { api } from "~/trpc/react";
-import { cn } from "~/lib/utils";
-import { Posts } from "../_components/posts";
 import { Daily } from "../_components/daily";
 import { Recommendations } from "../_components/recommendations";
 

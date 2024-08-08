@@ -1,6 +1,3 @@
-import { Posts } from "~/app/_components/posts";
-
-
 interface ExploreLayoutProps {
     children: React.ReactNode;
 }
@@ -13,7 +10,7 @@ export default  function ExploreLayout({children}: ExploreLayoutProps) {
             </div>
             <div className="basis-3/5">
                 <div className="py-16 p-8">
-                <Posts />
+                    {children}
                 </div>
             </div>
         </div>

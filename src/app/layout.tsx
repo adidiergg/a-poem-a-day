@@ -1,16 +1,7 @@
 import "~/styles/globals.css";
-import { GeistSans } from "geist/font/sans";
 import { TRPCReactProvider } from "~/trpc/react";
-import Link from "next/link";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "~/components/ui/card";
 import { cn } from "~/lib/utils";
 import { Source_Sans_3 as FontSans } from "next/font/google";
-import { SiteHeader } from "./_components/site-header";
 import { Toaster } from "react-hot-toast";
 
 //import { EB_Garamond as FontSans } from "next/font/google";

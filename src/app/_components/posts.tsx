@@ -1,17 +1,16 @@
 "use client";
 import { api } from "~/trpc/react";
 import { Post } from "./post";
-import { Spinner } from "~/components/spinner";
 import { SkeletonPostsHome } from "~/components/skeleton_post_home";
 import { useSearchParams } from "next/navigation";
 import { Pagination } from "~/components/pagination";
 
 export const Posts = () => {
   const searchParams = useSearchParams();
-  const pageParam= +[searchParams.get("page")];
-  const page = (Number.isNaN(pageParam) || pageParam <= 0  ?  1 : pageParam);
+  const pageParam = +[searchParams.get("page")];
+  const page = Number.isNaN(pageParam) || pageParam <= 0 ? 1 : pageParam;
   const { data, isLoading, isError } = api.poem.getPoems.useQuery({ page });
- 
+
   if (isLoading) return <SkeletonPostsHome />;
   if (isError) return <h1>Error de conexión</h1>;
   return (
@@ -25,8 +24,10 @@ export const Posts = () => {
           No hay poemas disponibles
         </h1>
       )}
-     
-      {!!(data?.results?.length) &&  (<Pagination page={page} totalPages={data?.totalPages} />) }
+
+      {!!data?.results?.length && (
+        <Pagination page={page} totalPages={data?.totalPages} />
+      )}
     </div>
   );
 };

@@ -167,5 +167,4 @@ export const AudioPlayer = (props: {
   );
 };
 
-//      <ProgressPie className="z-10 size-12 cursor-pointer rounded-full fill-current  font-bold text-primary/90 hover:bg-primary/10 hover:text-primary -rotate-90" progress={progress} duration={duration}/>
 
