@@ -31,13 +31,13 @@ export const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
     currentPage+2 === totalPages+2 ? currentPage : currentPage+2 === totalPages+1 ? currentPage-1 : currentPage===totalPages? currentPage: currentPage+2 );
 
   return (
-    <div className="flex w-full flex-row items-center justify-center gap-3">
+    <div className="flex w-full flex-row items-center justify-center gap-3 flex-wrap">
       {currentPage !== 1 && (
         <>
           <Link href={`${pathname}?${changePage(1)}`}>
             <Icons.first_page
               className={
-                "size-12 rounded-md  border-2 border-background/5 bg-primary text-background p-2"
+                "size-8 lg:size-12 rounded-md  border-2 border-background/5 bg-primary text-background p-2"
               }
             />
           </Link>
@@ -45,7 +45,7 @@ export const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
           <Link href={`${pathname}?${changePage(prevPage)}`}>
             <Icons.prev
               className={
-                "size-12 rounded-md  border-2 border-background/5 bg-primary fill-background p-2"
+                "size-8 lg:size-12 rounded-md  border-2 border-background/5 bg-primary fill-background p-2"
               }
             />
           </Link>
@@ -63,7 +63,7 @@ export const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
                 <Link key={page} href={`${pathname}?${changePage(page)}`}>
                   <div
                     className={cn(
-                      "flex h-12 w-12 items-center justify-center rounded-md  p-2",
+                      "flex h-8 w-8 lg:h-12 lg:w-12 items-center justify-center rounded-md  p-2",
                       currentPage === page
                         ? "border-2 border-background/5 bg-primary text-background"
                         : "border-2 border-primary bg-background text-primary",
@@ -81,14 +81,14 @@ export const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
           <Link href={`${pathname}?${changePage(nextPage)}`}>
             <Icons.next
               className={
-                "size-12 rounded-md  border-2 border-background/5 bg-primary fill-background p-2"
+                "size-8 lg:size-12 rounded-md  border-2 border-background/5 bg-primary fill-background p-2"
               }
             />
           </Link>
           <Link href={`${pathname}?${changePage(totalPages)}`}>
             <Icons.last_page
               className={
-                "size-12 rounded-md  border-2 border-background/5 bg-primary text-background p-2"
+                "size-8 lg:size-12 rounded-md  border-2 border-background/5 bg-primary text-background p-2"
               }
             />
           </Link>
