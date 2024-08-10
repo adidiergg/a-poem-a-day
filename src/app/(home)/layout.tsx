@@ -10,7 +10,7 @@ export default function AppLayout({children}: AppLayoutProps){
     return (
         <>
             <SiteHeader />
-            <main className="flex-1 lg:px-8">
+            <main className="flex-1 lg:px-4">
                 {children}
             </main>
             

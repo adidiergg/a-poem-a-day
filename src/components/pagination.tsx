@@ -33,11 +33,11 @@ export const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
   return (
     <div className="flex w-full flex-col lg:flex-row items-center justify-center gap-3 flex-wrap">
       {currentPage !== 1 && (
-        <div className="flex flex-row">
+        <div className="flex flex-row gap-3">
           <Link href={`${pathname}?${changePage(1)}`}>
             <Icons.first_page
               className={
-                "size-8 lg:size-12 rounded-lg  border-2 border-background/5 bg-primary text-background p-2 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
+                "size-10 lg:size-12 rounded-sm  border-2 border-background/5 bg-primary text-background p-2 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
               }
             />
           </Link>
@@ -45,7 +45,7 @@ export const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
           <Link href={`${pathname}?${changePage(prevPage)}`}>
             <Icons.prev
               className={
-                "size-8 lg:size-12 rounded-lg  border-2 border-background/5 bg-primary fill-background p-2 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
+                "size-10 lg:size-12 rounded-sm  border-2 border-background/5 bg-primary fill-background p-2 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
               }
             />
           </Link>
@@ -63,7 +63,7 @@ export const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
                 <Link key={page} href={`${pathname}?${changePage(page)}`}>
                   <div
                     className={cn(
-                      "flex h-8 w-8 lg:h-12 lg:w-12 items-center justify-center rounded-lg  p-2 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]",
+                      "flex h-10 w-10 lg:h-12 lg:w-12 items-center justify-center rounded-sm  p-2 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]",
                       currentPage === page
                         ? "border-2 border-background/5 bg-primary text-background"
                         : "border-2 border-primary bg-background text-primary",
@@ -77,18 +77,18 @@ export const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
         </div>
       
       {currentPage !== totalPages && (
-        <div className="flex flex-row">
+        <div className="flex flex-row gap-3">
           <Link href={`${pathname}?${changePage(nextPage)}`}>
             <Icons.next
               className={
-                "size-8 lg:size-12 rounded-lg  border-2 border-background/5 bg-primary fill-background p-2 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
+                "size-10 lg:size-12 rounded-sm  border-2 border-background/5 bg-primary fill-background p-2 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
               }
             />
           </Link>
           <Link href={`${pathname}?${changePage(totalPages)}`}>
             <Icons.last_page
               className={
-                "size-8 lg:size-12 rounded-lg border-2 border-background/5 bg-primary text-background p-2 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
+                "size-10 lg:size-12 rounded-sm border-2 border-background/5 bg-primary text-background p-2 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
               }
             />
           </Link>
