@@ -43,7 +43,7 @@ export const PostPoem = ({ poem }: PoemProps) => {
 
   return (
     <>
-      <div className="z-0 flex  min-h-[calc(100vh-96px)]  w-full rounded-lg bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  ">
+      <div className="z-0 flex  min-h-[calc(100vh-96px)]  w-full  bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  ">
         <div className="flex basis-full flex-col justify-between gap-4 p-8 md:px-12">
           <div className="menu flex flex-row justify-between">
             <Icons.back

@@ -142,7 +142,8 @@ export const poemRouter = createTRPCRouter({
           }
         },
         where:{
-          postId: {in: list_visited}
+          postId: {in: list_visited},
+          postRecommendId: {notIn: list_visited}
         }
       })
       return response;
