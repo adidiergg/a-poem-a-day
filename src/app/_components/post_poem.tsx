@@ -1,6 +1,6 @@
 import {  useEffect,useRef } from "react";
 import { api } from "~/trpc/react";
-import type { Poem } from "~/lib/types";
+import type { Poem, Visited } from "~/lib/types";
 import Markdown from "react-markdown";
 import { EB_Garamond as FontGaramond } from "next/font/google";
 import { cn } from "~/lib/utils";
@@ -10,7 +10,7 @@ import { AudioPlayer } from "~/components/audio-player";
 import { BtnBookMark } from "~/components/btn-bookmark";
 import { Tag } from "~/components/tag";
 import { Download } from "~/components/download";
-
+import { useLocalStorage } from "~/hooks/useLocalStorage";
 
 type PoemProps = {
   poem: Poem;
@@ -22,12 +22,24 @@ export const PostPoem = ({ poem }: PoemProps) => {
   const { id, title, author, content, tags } = poem;
 
   const router = useRouter();
+  const [value,setValue] = useLocalStorage<Visited[]>('visited',[])
 
   const ref = useRef<HTMLDivElement>(null);
   const { mutate } = api.poem.addView.useMutation();
   useEffect(() => {
     mutate({ id });
   }, []);
+
+  useEffect(() => {
+    const isVisited = value.findIndex((obj) => obj.id === id)
+    if ( isVisited === -1 ){
+      setValue([...value,{id}])
+    }
+
+    if (value.length > 9) {
+      setValue(preValue => preValue.slice(1))
+    }
+  },[]);
 
   return (
     <>
@@ -42,7 +54,6 @@ export const PostPoem = ({ poem }: PoemProps) => {
 
             <div className="flex flex-row gap-1">
               <Download id={id} ref={ref} />  
-              <AudioPlayer title={title} content={content} author={author} />
               <BtnBookMark bookmark={{id}} />
             </div>
           </div>

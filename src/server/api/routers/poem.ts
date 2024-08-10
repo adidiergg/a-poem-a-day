@@ -109,6 +109,44 @@ export const poemRouter = createTRPCRouter({
 
       return response;
     }),
+  getRecommendations: publicProcedure 
+    .input(z.object({visited:z.array(z.object({id:z.string()}))}))
+    .query(async ({ctx,input}) => {
+      const list_visited = input.visited.map((visit) => visit.id);
+      const response = await ctx.db.recommendations.findMany({
+        relationLoadStrategy: "join",
+        orderBy:{
+          score: "asc",
+        },
+        distinct: ['postRecommendId'],
+        take: 24,
+        select:{
+          score: true,
+          poemRecommend:{
+            select:{
+              id: true,
+              title: true,
+              content: true,
+              author: true,
+              tags : {
+                select :{
+                  tag: {
+                    select:{
+                      id: true,
+                      name: true,
+                    }
+                  },
+                }
+              }
+            }
+          }
+        },
+        where:{
+          postId: {in: list_visited}
+        }
+      })
+      return response;
+    }),
 
   addView: publicProcedure
     .input(z.object({id:z.string()}))

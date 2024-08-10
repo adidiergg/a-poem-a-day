@@ -14,7 +14,6 @@ export function SkeletonPoem() {
           <div className="flex flex-row gap-1">
             <div className="size-12 rounded-full  bg-primary/20 p-2  font-bold" />
             <div className="size-12 rounded-full  bg-primary/20 p-2  font-bold" />
-            <div className="size-12 rounded-full  bg-primary/20 p-2  font-bold" />
           </div>
         </div>
 

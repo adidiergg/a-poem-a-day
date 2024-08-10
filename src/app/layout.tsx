@@ -34,7 +34,7 @@ export default function RootLayout({
           <TRPCReactProvider>
             <div className="relative flex min-h-screen flex-col  justify-center 
       bg-primary   before:pointer-events-none before:absolute before:inset-0 before:block before:h-full 
-      before:w-full before:bg-[url('/images/background-pattern.svg')] before:bg-repeat before:opacity-5">
+      before:w-full before:bg-[url('/images/background-pattern.svg')] before:bg-repeat before:opacity-10">
               {children}
             </div>
             <Toaster />
