@@ -9,8 +9,8 @@ export function SiteHeader() {
 
 
   const changeColor = () =>{
-    if(window.scrollY > 1){
-      setStyles('bg-primary/90')
+    if(window.scrollY > 16){
+      setStyles('bg-primary')
     }else{
       setStyles('bg-transparent')
     }
@@ -25,7 +25,7 @@ export function SiteHeader() {
 
 
   return (
-    <header className={cn("fixed top-0 z-10 w-full p-1 px-3 bg-primary",styles)}>
+    <header className={cn("fixed top-0 z-10 w-full p-1 px-3 shadow-[rgba(0,_0,_0,_0.24)_0px_7px_8px]",styles,"bg-gradient-to-t from-primary/70 to-primary")}>
       <div className=" flex h-12  items-center ">
         <div className="flex flex-1 items-center justify-between">
           <div className="">
