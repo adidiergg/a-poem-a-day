@@ -37,7 +37,7 @@ export const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
           <Link href={`${pathname}?${changePage(1)}`}>
             <Icons.first_page
               className={
-                "size-10 lg:size-12 rounded-sm  bg-primary text-background p-2 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
+                "size-10 lg:size-12 rounded-sm  bg-background text-primary p-4 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
               }
             />
           </Link>
@@ -45,7 +45,7 @@ export const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
           <Link href={`${pathname}?${changePage(prevPage)}`}>
             <Icons.prev
               className={
-                "size-10 lg:size-12 rounded-sm  bg-primary fill-background p-2 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
+                "size-10 lg:size-12 rounded-sm  bg-background text-primary p-4 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
               }
             />
           </Link>
@@ -65,7 +65,7 @@ export const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
                     className={cn(
                       "flex h-10 w-10 lg:h-12 lg:w-12 items-center justify-center rounded-sm  p-2 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]",
                       currentPage === page
-                        ? "bg-primary text-background"
+                        ? "bg-primary/80 text-background"
                         : "bg-background text-primary",
                     )}
                   >
@@ -81,14 +81,14 @@ export const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
           <Link href={`${pathname}?${changePage(nextPage)}`}>
             <Icons.next
               className={
-                "size-10 lg:size-12 rounded-sm  bg-primary fill-background p-2 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
+                "size-10 lg:size-12 rounded-sm  bg-background text-primary p-4 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
               }
             />
           </Link>
           <Link href={`${pathname}?${changePage(totalPages)}`}>
             <Icons.last_page
               className={
-                "size-10 lg:size-12 rounded-sm  bg-primary text-background p-2 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
+                "size-10 lg:size-12 rounded-sm  bg-background text-primary p-4 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
               }
             />
           </Link>
