@@ -20,7 +20,7 @@ export const Daily = ()=>{
         { data ? 
         <div className="z-0 flex w-full  lg:max-w-prose  bg-background   ">
         <div className="flex flex-col p-8 md:px-12 gap-1">
-          <div className="border-l-4 border-primary/90 px-4">
+          <div className="px-4">
           <Markdown  className={cn(
                 "mb-4 mt-1  text-lg text-primary/80 lg:text-lg",
                 fontGaramond.className,

@@ -12,10 +12,9 @@ import { NotFound } from "~/components/not-found";
 
 
 export default function PoemPage() {
-  const {id} = useParams<{ id: string }>()
+  const {poemId} = useParams<{ poemId: string }>()
  
-  const { data, isLoading, isError } = api.poem.getById.useQuery({ id });
-  
+  const { data, isLoading, isError } = api.poem.getById.useQuery({ id:poemId });
 
   if (isLoading) return <SkeletonPoem />;
   if (isError) return <NotFound message="Error de conexión"/>;
