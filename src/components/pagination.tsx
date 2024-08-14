@@ -31,7 +31,7 @@ export const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
     currentPage+2 === totalPages+2 ? currentPage : currentPage+2 === totalPages+1 ? currentPage-1 : currentPage===totalPages? currentPage: currentPage+2 );
 
   return (
-    <div className="flex w-full flex-row items-center justify-center gap-3 flex-wrap">
+    <div className="flex w-full flex-row items-center justify-between lg:justify-center gap-3 flex-wrap">
       {currentPage !== 1 && (
         <div className="flex flex-row gap-3">
           <Link href={`${pathname}?${changePage(1)}`}>
@@ -51,7 +51,7 @@ export const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
           </Link>
         </div>
       )}
-      
+        
         <div className="flex flex-row gap-3 collapse lg:visible">
           {Array.from({ length: totalPages }, (_, i) => i + 1)
             .slice(

@@ -82,12 +82,12 @@
  
 /* Track */
 ::-webkit-scrollbar-track {
-    background: transparent;
+    background: #18181B;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #888;
+    background:  #888;
     border-radius: 5px;
 }
  

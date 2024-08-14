@@ -30,7 +30,7 @@ export default function Home() {
       </div>
 
       <div className="basis-1/3">
-        <div className="py-16 p-4">
+        <div className="lg:py-16 p-4">
           <Recommendations />
         </div>
       </div>

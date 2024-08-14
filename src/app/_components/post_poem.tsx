@@ -45,17 +45,14 @@ export const PostPoem = ({ poem }: PoemProps) => {
     <>
       <div className="z-0 flex  min-h-[calc(100vh-96px)]  w-full  bg-background shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]  ">
         <div className="flex basis-full flex-col justify-between gap-4 p-8 md:px-12">
-          <div className="menu flex flex-row justify-between">
+          <div className="menu flex flex-row justify-start">
             <Icons.back
               className="size-12  cursor-pointer rounded-full fill-current p-2  text-primary/90 hover:bg-primary/10 hover:text-primary"
               aria-hidden="true"
               onClick={() => router.back()}
             />
 
-            <div className="flex flex-row gap-1">
-              <Download id={id} ref={ref} />  
-              <BtnBookMark bookmark={{id}} />
-            </div>
+           
           </div>
 
           <div ref={ref} className="flex flex-col py-8 gap-3" >
@@ -81,6 +78,14 @@ export const PostPoem = ({ poem }: PoemProps) => {
             {tags.map((tag) => (
               <Tag key={tag.tag.id} id={tag.tag.id} tag={tag.tag.name} />
             ))}
+          </div>
+          <div className="menu flex flex-row justify-end">
+            
+
+            <div className="flex flex-row gap-1">
+              <Download id={id} ref={ref} />  
+              <BtnBookMark bookmark={{id}} />
+            </div>
           </div>
         </div>
       </div>

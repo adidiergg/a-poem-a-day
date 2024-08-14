@@ -14,7 +14,7 @@ export default function PoemPage({ children }: PoemLayoutProps) {
         {children}
       </div>
       <div className="basis-1/3">
-        <div className="px-4 py-16">
+        <div className="px-4 lg:py-16">
           <Recommendations  />
         </div>
       </div>

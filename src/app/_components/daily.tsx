@@ -18,7 +18,7 @@ export const Daily = ()=>{
     return (
         <>
         { data ? 
-        <div className="z-0 flex w-full  lg:max-w-prose  bg-background   ">
+        <div className="z-0 flex w-full  lg:max-w-prose  bg-background  border-l-8 border-primary  ">
         <div className="flex flex-col p-8 md:px-12 gap-1">
           <div className="px-4">
           <Markdown  className={cn(
