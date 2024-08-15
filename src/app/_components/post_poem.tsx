@@ -11,6 +11,7 @@ import { BtnBookMark } from "~/components/btn-bookmark";
 import { Tag } from "~/components/tag";
 import { Download } from "~/components/download";
 import { useLocalStorage } from "~/hooks/useLocalStorage";
+import { Share } from "~/components/share";
 
 type PoemProps = {
   poem: Poem;
@@ -85,6 +86,7 @@ export const PostPoem = ({ poem }: PoemProps) => {
             <div className="flex flex-row gap-1">
               <Download id={id} ref={ref} />  
               <BtnBookMark bookmark={{id}} />
+              <Share />
             </div>
           </div>
         </div>

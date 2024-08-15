@@ -28,13 +28,13 @@ export const Download = forwardRef<HTMLDivElement,DownloadProps>(function Downlo
     }
   },[ref]);
   return (
-    <>
+    <div className="rounded-full  cursor-pointer hover:bg-primary/10 ">
 
       <Icons.download
-        className="size-12 cursor-pointer rounded-full fill-transparent p-2 text-primary/90 hover:bg-primary/10 hover:text-primary"
+        className="size-12 fill-transparent p-1.5 text-primary/90  hover:text-primary"
         aria-hidden="true"
         onClick={ImageConvert}
       />
-    </>
+    </div>
   );
 });

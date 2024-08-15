@@ -23,7 +23,7 @@ export const Recommendations = () => {
 
   return (
     <div className="flex w-full flex-col items-center gap-6">
-      <div className="flex w-full flex-row items-center gap-3">
+      <div className="flex w-full flex-row items-end gap-3 ">
         {(status === recommendationsStatus.forYou ||
           status === recommendationsStatus.relantionship) && (
           <>
