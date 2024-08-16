@@ -1,16 +1,16 @@
 import Link from "next/link";
 import { Tag } from "~/components/tag";
-import type { Poem } from "~/lib/types";
+import type { Posts } from "~/lib/types";
 import Markdown from "react-markdown";
 import { EB_Garamond as FontGaramond } from "next/font/google";
 import { cn } from "~/lib/utils";
 type PoemProps = {
-  poem: Poem;
+  post: Posts;
 };
 const fontGaramond = FontGaramond({ weight: ["400"], subsets: ["latin"] });
 
-export const Post = ({ poem }: PoemProps) => {
-  const { id, title, author, tags,content } = poem;
+export const Post = ({ post }: PoemProps) => {
+  const { id, title, author, tags } = post;
 
   return (
     <div className="z-0 flex min-h-32  w-full flex-col gap-2  border-l-8 border-primary bg-background p-4 py-8 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px] md:px-12 ">

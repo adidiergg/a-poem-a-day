@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { Tag } from "~/components/tag";
-import type { Poem } from "~/lib/types";
-type PoemProps = {
-  poem: Poem;
+import type { Posts } from "~/lib/types";
+type SuggestionProps = {
+  posts: Posts;
 };
 
-export const Suggestion = ({ poem }: PoemProps) => {
-  const { id, title, author, tags } = poem;
+export const Suggestion = ({ posts }: SuggestionProps) => {
+  const { id, title, author, tags } = posts;
 
   return (
     <div className="z-0 flex min-h-32  w-full flex-col gap-2  border-l-8 border-primary bg-background p-4 py-8 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px] md:px-12 ">

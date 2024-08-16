@@ -17,7 +17,7 @@ export const Posts = () => {
     <div className="relative flex w-full flex-col items-center gap-6">
       {data?.results?.length ? (
         data.results.map((poem) => {
-          return <Post poem={poem} key={poem.id} />;
+          return <Post post={poem} key={poem.id} />;
         })
       ) : (
         <h1 className="text-center text-xl font-semibold text-background">

@@ -17,8 +17,8 @@ export const Share = (props:ShareProps) => {
   const { toast } = useToast();
 
   const copyToClipboard = () => {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(window.location.toString());
+    if (navigator.clipboard) {9
+      void navigator.clipboard.writeText(window.location.toString());
       toast({
         title: "link copiado",
       });
