@@ -4,6 +4,7 @@ import { Post } from "./post";
 import { SkeletonPostsHome } from "~/components/skeleton_post_home";
 import { useSearchParams } from "next/navigation";
 import { Pagination } from "~/components/pagination";
+import { Search } from "~/components/search";
 
 export const Posts = () => {
   const searchParams = useSearchParams();
@@ -14,7 +15,14 @@ export const Posts = () => {
   if (isLoading) return <SkeletonPostsHome />;
   if (isError) return <h1>Error de conexión</h1>;
   return (
+    
+    
+
     <div className="relative flex w-full flex-col items-center gap-6">
+      {!!data?.results?.length && (
+        <Search/>
+      )}
+
       {data?.results?.length ? (
         data.results.map((poem) => {
           return <Post post={poem} key={poem.id} />;
