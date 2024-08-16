@@ -48,7 +48,7 @@ export function SiteHeader() {
               }
             >
               <Link href="/explore">
-                <Icons.explore className="size-12 cursor-pointer fill-transparent text-background hover:text-background/90" />
+                <Icons.search className="size-12 cursor-pointer p-2 fill-transparent text-background hover:text-background/90" />
               </Link>
             </div>
             <div
