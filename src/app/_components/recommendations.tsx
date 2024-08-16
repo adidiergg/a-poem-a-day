@@ -73,7 +73,7 @@ const ForYou = () => {
     <>
       {data?.length ? (
         data.map((poem) => {
-          return <Suggestion poem={poem} key={poem.id} />;
+          return <Suggestion post={poem} key={poem.id} />;
         })
       ) : (
         <h1 className="text-center text-xl font-semibold text-background">
@@ -99,7 +99,7 @@ const Relationship = () => {
     <>
       {data?.length ? (
         data.map((poem) => {
-          return <Suggestion poem={poem} key={poem.id} />;
+          return <Suggestion post={poem} key={poem.id} />;
         })
       ) : (
         <h1 className="text-center text-xl font-semibold text-background">
