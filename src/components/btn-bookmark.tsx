@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Icons } from "./icons";
-import { Poem } from "~/lib/types";
 import { useLocalStorage } from "~/hooks/useLocalStorage";
 import { set } from "zod";
 import { BookMark } from "~/lib/types";
+import { useToast } from "./ui/use-toast";
+
 enum Status {
   saved = "saved",
   success = "success",
@@ -21,15 +22,23 @@ export const BtnBookMark = ({ bookmark }: BookMarkProps) => {
     [],
   );
   const [status, setStatus] = useState<Status>(Status.pending);
+  const { toast } = useToast();
+
   const addBookMark = () => {
     const newBookMark = [...value, bookmark]
     setValue(newBookMark);
+    toast({
+      title:"Poema guardado",
+    })
   };
 
 
   const removeBookMark = () => {
     const removeBookMark = value.filter((obj) => obj.id !== bookmark.id).map((obj) => obj);
     setValue(removeBookMark);
+    toast({
+      title:"Poema eliminado",
+    })
   };
 
   useEffect(() => {

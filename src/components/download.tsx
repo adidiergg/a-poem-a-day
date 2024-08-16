@@ -4,6 +4,7 @@ import { toCanvas, toPng, toSvg } from "html-to-image";
 import Markdown from "react-markdown";
 import { EB_Garamond as FontGaramond } from "next/font/google";
 import { cn } from "~/lib/utils";
+import { useToast } from "./ui/use-toast";
 
 interface DownloadProps {
   id: string;
@@ -13,7 +14,9 @@ const fontGaramond = FontGaramond({ weight: ["400"], subsets: ["latin"] });
 
 
 export const Download = forwardRef<HTMLDivElement,DownloadProps>(function Download(props,ref)  {
-
+  
+  const { toast } = useToast();
+   
   const ImageConvert = useCallback(() => {
     if (ref && (ref as RefObject<HTMLDivElement>).current){
       toPng((ref as RefObject<HTMLDivElement>)!.current!,{cacheBust:true,style:{backgroundColor:"#fffef5"}})
@@ -22,6 +25,9 @@ export const Download = forwardRef<HTMLDivElement,DownloadProps>(function Downlo
         link.download = `${props.id}.png`;
         link.href = url;
         link.click();
+        toast({
+          title:"Imagen descargada"
+        })
      }).catch((error) => {
         console.log("ImageConvert",error);
      })

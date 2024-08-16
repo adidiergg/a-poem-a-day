@@ -121,7 +121,6 @@ export const poemRouter = createTRPCRouter({
           select: {
             id: true,
             title: true,
-            content: true,
             author: true,
             tags: {
               select: {
@@ -209,7 +208,6 @@ export const poemRouter = createTRPCRouter({
         select: {
           id: true,
           title: true,
-          content: true,
           author: true,
           tags: {
             select: {
@@ -244,7 +242,6 @@ export const poemRouter = createTRPCRouter({
             select:{
               id: true,
               title: true,
-              content: true,
               author: true,
               tags : {
                 select :{

@@ -29,7 +29,7 @@ export const Recommendations = () => {
           <>
             <button
               className={cn(
-                "block  basis-1/2  px-2 py-1 text-xl text-background",
+                "block  basis-1/2  px-2 py-1 text-xl text-background hover:border-b-2 border-background",
                 status === recommendationsStatus.forYou &&
                   "border-b-2 border-background",
               )}
@@ -41,7 +41,7 @@ export const Recommendations = () => {
             {poemId && (
               <button
                 className={cn(
-                  "block  basis-1/2  px-2 py-1 text-xl text-background",
+                  "block  basis-1/2  px-2 py-1 text-xl text-background hover:border-b-2 border-background",
                   status === recommendationsStatus.relantionship &&
                     "border-b-2 border-background",
                 )}

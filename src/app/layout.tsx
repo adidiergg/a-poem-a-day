@@ -2,7 +2,7 @@ import "~/styles/globals.css";
 import { TRPCReactProvider } from "~/trpc/react";
 import { cn } from "~/lib/utils";
 import { Source_Sans_3 as FontSans } from "next/font/google";
-import { Toaster } from "react-hot-toast";
+import { Toaster } from "~/components/ui/toaster";
 
 //import { EB_Garamond as FontSans } from "next/font/google";
 

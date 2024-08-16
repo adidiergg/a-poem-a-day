@@ -41,10 +41,10 @@ export function SiteHeader() {
             </Link>
           </div>
 
-          <nav className="z-10 flex flex-row">
+          <nav className="z-10 flex flex-row gap-1">
             <div
-              className={
-                pathname === "/explore" ? "border-b-2 border-background" : ""
+              className={cn("hover:border-b-2 border-background",
+                pathname === "/explore" ? "border-b-2 border-background" : "")
               }
             >
               <Link href="/explore">
@@ -52,8 +52,8 @@ export function SiteHeader() {
               </Link>
             </div>
             <div
-              className={
-                pathname === "/bookmarks" ? "border-b-2 border-background" : ""
+              className={cn("hover:border-b-2 border-background",
+                pathname === "/bookmarks" ? "border-b-2 border-background" : "")
               }
             >
               <Link href="/bookmarks">

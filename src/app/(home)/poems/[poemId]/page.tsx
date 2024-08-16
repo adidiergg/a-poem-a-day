@@ -10,22 +10,17 @@ import { useRouter } from "next/navigation";
 import { Icons } from "~/components/icons";
 import { NotFound } from "~/components/not-found";
 
-
 export default function PoemPage() {
-  const {poemId} = useParams<{ poemId: string }>()
- 
-  const { data, isLoading, isError } = api.poem.getById.useQuery({ id:poemId });
+  const { poemId } = useParams<{ poemId: string }>();
 
-  if (isLoading) return <SkeletonPoem />;
-  if (isError) return <NotFound message="Error de conexión"/>;
-  if (data === null) return <NotFound message="Contenido no disponible"/>;
+  //const { data, isLoading, isError } = api.poem.getById.useQuery({ id:poemId });
+
+  //if (isLoading) return <SkeletonPoem />;
+  //if (isError) return <NotFound message="Error de conexión"/>;
+  //if (data === null) return <NotFound message="Contenido no disponible"/>;
   return (
     <>
-        {data && <PostPoem poem={data} />}
+      <PostPoem id={poemId} />
     </>
   );
 }
-
-
-
-
