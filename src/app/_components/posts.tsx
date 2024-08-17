@@ -9,32 +9,39 @@ import { Search } from "~/components/search";
 export const Posts = () => {
   const searchParams = useSearchParams();
   const pageParam = +[searchParams.get("page")];
+  const searchParam = searchParams.get("search");
   const page = Number.isNaN(pageParam) || pageParam <= 0 ? 1 : pageParam;
-  const { data, isLoading, isError } = api.poem.getPoems.useQuery({ page });
 
-  if (isLoading) return <SkeletonPostsHome />;
+  const search = searchParam === null ? "" : searchParam;
+  const { data, isLoading, isError } = api.poem.getPoems.useQuery({
+    page,
+    search,
+  });
+
   if (isError) return <h1>Error de conexión</h1>;
+  console.log(data);
   return (
-    
-    
-
     <div className="relative flex w-full flex-col items-center gap-6">
-      {!!data?.results?.length && (
-        <Search/>
-      )}
+      <Search />
 
-      {data?.results?.length ? (
-        data.results.map((poem) => {
-          return <Post post={poem} key={poem.id} />;
-        })
+      {isLoading ? (
+        <SkeletonPostsHome />
       ) : (
-        <h1 className="text-center text-xl font-semibold text-background">
-          No hay poemas disponibles
-        </h1>
-      )}
+        <>
+          {data?.results?.length ? (
+            data.results.map((poem) => {
+              return <Post post={poem} key={poem.id} />;
+            })
+          ) : (
+            <h1 className="text-center text-xl font-semibold text-background">
+              No se encontraron poemas
+            </h1>
+          )}
 
-      {!!data?.results?.length && (
-        <Pagination currentPage={page} totalPages={data?.totalPages} />
+          {!!data?.results?.length && (
+            <Pagination currentPage={page} totalPages={data?.totalPages} />
+          )}
+        </>
       )}
     </div>
   );

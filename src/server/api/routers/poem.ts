@@ -192,14 +192,25 @@ export const poemRouter = createTRPCRouter({
 
     }),
   getPoems: publicProcedure
-    .input(z.object({ page: z.number() }))
+    .input(z.object({ page: z.number(),search: z.string().optional() }))
     .query(async ({ ctx, input }) => {
       let page = input.page;
       if (page <= 0) {
         page = 1;
       }
       const limit = 10;
-      const totalPoems = await ctx.db.poems.count();
+      const totalPoems = await ctx.db.poems.count({where:{
+        OR: [
+        {title:{
+          contains:input.search,
+          mode: 'insensitive'
+        }},
+        {author:{
+          contains:input.search,
+          mode: 'insensitive'
+        }},
+        ],
+      }});
       const totalPages = Math.ceil(totalPoems / limit);
       const offset = (page - 1) * limit;
       const results = await ctx.db.poems.findMany({
@@ -219,6 +230,18 @@ export const poemRouter = createTRPCRouter({
               },
             }
           }
+        },
+        where:{
+          OR: [
+          {title:{
+            contains:input.search,
+            mode: 'insensitive'
+          }},
+          {author:{
+            contains:input.search,
+            mode: 'insensitive'
+          }},
+          ],
         },
         orderBy: {
           title: "asc",
