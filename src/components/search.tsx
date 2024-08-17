@@ -11,8 +11,8 @@ export const Search = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const ref = useRef<HTMLInputElement>(null);
-  const searchParam = searchParams.get("search");
-  const search_query = searchParam === null ? "" : searchParam;
+  const search_param = searchParams.get("search");
+  const search_query = search_param ?? "";
 
   const initialSearch = () => {
         const params = new URLSearchParams(searchParams.toString());
@@ -32,7 +32,7 @@ export const Search = () => {
 
   useEffect(() => {
     setSearch(search_query);
-  },[searchParams]);
+  },[search_query]);
 
   
 

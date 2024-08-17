@@ -12,7 +12,8 @@ export const Posts = () => {
   const searchParam = searchParams.get("search");
   const page = Number.isNaN(pageParam) || pageParam <= 0 ? 1 : pageParam;
 
-  const search = searchParam === null ? "" : searchParam;
+  const search = searchParam ?? "";
+
   const { data, isLoading, isError } = api.poem.getPoems.useQuery({
     page,
     search,
