@@ -19,7 +19,6 @@ export const Posts = () => {
   });
 
   if (isError) return <h1>Error de conexión</h1>;
-  console.log(data);
   return (
     <div className="relative flex w-full flex-col items-center gap-6">
       <Search />

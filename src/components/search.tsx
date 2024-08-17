@@ -11,13 +11,14 @@ export const Search = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const ref = useRef<HTMLInputElement>(null);
+  const searchParam = searchParams.get("search");
+  const search_query = searchParam === null ? "" : searchParam;
 
   const initialSearch = () => {
         const params = new URLSearchParams(searchParams.toString());
         params.delete("page");
         params.set("search",search);
         params.toString();
-        console.log(params.toString());
         if (search === ""){
             params.delete("search");
         }
@@ -30,7 +31,7 @@ export const Search = () => {
   }
 
   useEffect(() => {
-    setSearch(searchParams.get("search") || "");
+    setSearch(search_query);
   },[searchParams]);
 
   
